@@ -5,10 +5,13 @@ using UnityEngine;
 public class EnterTrain : MonoBehaviour
 {
      Animator _animator;
+
+     [SerializeField] private GameObject avatar;
     // Start is called before the first frame update
     void Start()
     {
-        _animator = GetComponent<Animator>();
+        _animator = avatar.GetComponent<Animator>();
+        _animator.SetBool("doorsOpened", false);
     }
 
     // Update is called once per frame
@@ -21,5 +24,7 @@ public class EnterTrain : MonoBehaviour
     {
         Debug.Log("arrivato");
         _animator.SetTrigger("OpenDoor");
+       // _animator.SetBool("doorsOpened", true);
+        Debug.Log(_animator.parameterCount);
     }
 }

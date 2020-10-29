@@ -20,6 +20,7 @@ public class CollisionTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider avatar)
     {
+        Debug.Log("react");
         _animator.SetTrigger("Bump");
     }
 }
