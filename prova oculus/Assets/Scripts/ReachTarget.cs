@@ -22,8 +22,8 @@ public class ReachTarget : MonoBehaviour
 
     void Update()
     {
-        //if (Input.GetMouseButtonDown(0))
-        if (_animator.GetBool("OpenDoor")==true)
+        //if (_animator.GetBool("OpenDoor")==true)
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Walking"))
         {
             _navMeshAgent.SetDestination(_targetFeedback.transform.position);
         }
@@ -37,6 +37,7 @@ public class ReachTarget : MonoBehaviour
         if (!_navMeshAgent.pathPending)
             if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
                 if (!_navMeshAgent.hasPath || _navMeshAgent.velocity.sqrMagnitude == 0f)
+                    _animator.SetTrigger("Sit");
                     return true;
 
         return false;
