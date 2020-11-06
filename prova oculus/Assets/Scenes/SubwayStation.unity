@@ -120,7 +120,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 05ec4ebecca36c54285d8e2b7d79ea1e, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 597d250f986e7f94fb89bd38038a7aba, type: 2}
 --- !u!1 &36454512
 GameObject:
   m_ObjectHideFlags: 0
@@ -4462,7 +4462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53e3371879eaf874c840980fd02b04be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  avatar: {fileID: 0}
+  avatar: {fileID: 247937794}
 --- !u!95 &880738456
 Animator:
   serializedVersion: 3
@@ -8177,6 +8177,7 @@ MonoBehaviour:
   grabBegin: 0.55
   grabEnd: 0.35
   m_parentHeldObject: 0
+  m_moveHandPosition: 0
   m_gripTransform: {fileID: 1931687997}
   m_grabVolumes:
   - {fileID: 1931688001}
@@ -8214,6 +8215,7 @@ MonoBehaviour:
   grabBegin: 0.55
   grabEnd: 0.35
   m_parentHeldObject: 0
+  m_moveHandPosition: 0
   m_gripTransform: {fileID: 2050042248}
   m_grabVolumes:
   - {fileID: 2050042252}
