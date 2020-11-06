@@ -22,7 +22,6 @@ public class EnterTrain : MonoBehaviour
 
     public void Enter()
     {
-        Debug.Log("arrivato");
         _animator.SetTrigger("OpenDoor");
        // _animator.SetBool("doorsOpened", true);
         Debug.Log(_animator.parameterCount);
