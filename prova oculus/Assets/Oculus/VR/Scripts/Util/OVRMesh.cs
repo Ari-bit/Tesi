@@ -117,7 +117,7 @@ public class OVRMesh : MonoBehaviour
 			_mesh.boneWeights = boneWeights;
 
 			IsInitialized = true;
-        }
+		}
 	}
 
 #if UNITY_EDITOR

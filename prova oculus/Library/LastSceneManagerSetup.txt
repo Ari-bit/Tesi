@@ -7,3 +7,15 @@ sceneSetups:
   isLoaded: 1
   isActive: 1
   isSubScene: 0
+- path: Assets/Oculus/SampleFramework/Usage/HandsInteractionTrainScene.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Oculus/SampleFramework/Usage/CustomHands.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Oculus/SampleFramework/Usage/CustomControllers.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
