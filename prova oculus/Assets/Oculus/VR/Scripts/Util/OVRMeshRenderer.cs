@@ -137,9 +137,9 @@ public class OVRMeshRenderer : MonoBehaviour
 
 		if (IsInitialized)
 		{
-			bool shouldRender = false;
+            bool shouldRender = false;
 
-			if (_dataProvider != null)
+            if (_dataProvider != null)
 			{
 				var data = _dataProvider.GetMeshRendererData();
 
@@ -155,6 +155,10 @@ public class OVRMeshRenderer : MonoBehaviour
 				if (_skinnedMeshRenderer != null && _skinnedMeshRenderer.enabled != shouldRender)
 				{
 					_skinnedMeshRenderer.enabled = shouldRender;
+                    //if (shouldRender == false)
+                    //{
+                    //    GameObject.Find("PlayerControllerTeleport/OVRCameraRig/TrackingSpace/LeftHandAnchor/CustomHandLeft").SetActive(true);
+                    //}
 				}
 			}
 

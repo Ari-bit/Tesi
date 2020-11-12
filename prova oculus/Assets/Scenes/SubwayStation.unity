@@ -446,6 +446,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DestinationIndicatorSimple (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 823dc0eb5b064e14da00166d21f93fef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 823dc0eb5b064e14da00166d21f93fef, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -1560,6 +1564,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasWithDebug (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1620922654972176, guid: ddb963bcde7d8a04a88b3ee4709f46c7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 114778957838386506, guid: ddb963bcde7d8a04a88b3ee4709f46c7,
         type: 3}
       propertyPath: toDisable.Array.size
@@ -1697,7 +1705,7 @@ PrefabInstance:
     - target: {fileID: 4926590347275028320, guid: 522b89d0f09cc834db5f015f40e578f3,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4926590347275036400, guid: 522b89d0f09cc834db5f015f40e578f3,
         type: 3}
@@ -1797,7 +1805,7 @@ PrefabInstance:
     - target: {fileID: 4926590349004515177, guid: 522b89d0f09cc834db5f015f40e578f3,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4926590349014770823, guid: 522b89d0f09cc834db5f015f40e578f3,
         type: 3}
