@@ -11,7 +11,6 @@ public class EnterTrain : MonoBehaviour
     void Start()
     {
         _animator = avatar.GetComponent<Animator>();
-        _animator.SetBool("doorsOpened", false);
     }
 
     // Update is called once per frame
@@ -23,7 +22,6 @@ public class EnterTrain : MonoBehaviour
     public void Enter()
     {
         _animator.SetTrigger("OpenDoor");
-       // _animator.SetBool("doorsOpened", true);
         Debug.Log(_animator.parameterCount);
     }
 }
