@@ -2867,6 +2867,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 444521430}
     m_Modifications:
+    - target: {fileID: 112276, guid: d9809c5e8418bb047bf2c8ba1d1a2cec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 488160, guid: d9809c5e8418bb047bf2c8ba1d1a2cec, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4392,6 +4396,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2134282311}
     m_Modifications:
+    - target: {fileID: 1325736857600330, guid: f33f22767ed8d5f448588d4456526b8c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4164512171280460, guid: f33f22767ed8d5f448588d4456526b8c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 7.734466
@@ -4553,6 +4561,11 @@ PrefabInstance:
       propertyPath: _rightHand
       value: 
       objectReference: {fileID: 2129399336}
+    - target: {fileID: 114346469421508108, guid: cbdf09e3b0f1ac246914a74904002cb6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbdf09e3b0f1ac246914a74904002cb6, type: 3}
 --- !u!1 &347252678
@@ -9788,6 +9801,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InteractableToolsSDKDriver
       objectReference: {fileID: 0}
+    - target: {fileID: 1099536711198800, guid: 2ced187cdc1b6b94da2fd30a37e8bc41, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4344865891687486, guid: 2ced187cdc1b6b94da2fd30a37e8bc41, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -10145,6 +10162,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2134282311}
     m_Modifications:
+    - target: {fileID: 1336104575697680, guid: b5f108437e187c84b8cb3e1ad45ff7cc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4321859947973616, guid: b5f108437e187c84b8cb3e1ad45ff7cc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -15773,6 +15794,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 444521429}
     m_Modifications:
+    - target: {fileID: 112276, guid: d9809c5e8418bb047bf2c8ba1d1a2cec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 488160, guid: d9809c5e8418bb047bf2c8ba1d1a2cec, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
