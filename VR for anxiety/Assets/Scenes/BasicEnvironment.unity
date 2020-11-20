@@ -480,6 +480,7 @@ MonoBehaviour:
   avatarPrefab: {fileID: 919132149155446097, guid: d9a33dbeb79054e45a90210ca985d7f4,
     type: 3}
   controller: {fileID: 9100000, guid: e2cf68ff4b1ffda45a77f7307dd789b9, type: 2}
+  initAvatar: {fileID: 1648388326}
 --- !u!4 &1268155790
 Transform:
   m_ObjectHideFlags: 0
@@ -598,6 +599,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1648388325}
+  - component: {fileID: 1648388326}
   m_Layer: 0
   m_Name: Avatar Manager
   m_TagString: Untagged
@@ -621,6 +623,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1648388326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648388324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97697a3de6928c54883f00c87c9e980b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tpoints: {fileID: 1958400537}
 --- !u!1001 &1677283797
 PrefabInstance:
   m_ObjectHideFlags: 0
