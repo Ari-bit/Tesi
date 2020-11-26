@@ -5,7 +5,6 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject avatarPrefab;
-    [SerializeField] public RuntimeAnimatorController controller;
     private int spawnIndex;
     private Transform[] spawnpoints;
     private Vector3 spawnPos;
@@ -31,6 +30,6 @@ public class SpawnManager : MonoBehaviour
 
         GameObject avatar= Instantiate(avatarPrefab, spawnpoints[spawnIndex].position, avatarPrefab.transform.rotation, transform.parent);
         //initAvatar = new InitializeAvatar();
-        initAvatar.Init(avatar, controller);
+        initAvatar.Init(avatar);
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class AvatarManager : MonoBehaviour
 {
     [SerializeField] public GameObject tpoints;
+    private Avatar[] avatars;
 
     // Start is called before the first frame update
     void Start()
@@ -19,10 +20,9 @@ public class AvatarManager : MonoBehaviour
 
     }
 
-    public void Init(GameObject avatar, RuntimeAnimatorController controller)
+    public void Init(GameObject avatar)
     {
         Animator animator = avatar.GetComponent<Animator>();
-        animator.runtimeAnimatorController = controller;
         animator.SetFloat("Forward", 0.4f);
         avatar.AddComponent<ReachTarget>();
         ReachTarget reach = avatar.GetComponent<ReachTarget>();
