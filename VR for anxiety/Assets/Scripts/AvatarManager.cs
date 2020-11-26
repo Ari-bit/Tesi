@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.Animations;
 using UnityEngine;
 
@@ -20,12 +21,15 @@ public class AvatarManager : MonoBehaviour
 
     }
 
-    public void Init(GameObject avatar)
+    public void Init(GameObject avatarObj)
     {
-        Animator animator = avatar.GetComponent<Animator>();
+        Animator animator = avatarObj.GetComponent<Animator>();
         animator.SetFloat("Forward", 0.4f);
-        avatar.AddComponent<ReachTarget>();
-        ReachTarget reach = avatar.GetComponent<ReachTarget>();
+        avatarObj.AddComponent<ReachTarget>();
+        ReachTarget reach = avatarObj.GetComponent<ReachTarget>();
         reach.targetManager = tpoints.GetComponent<TargetManager>();
+
+        Avatar avatar = avatarObj.GetComponent<Avatar>();
+        //avatars.Append(avatar);
     }
 }

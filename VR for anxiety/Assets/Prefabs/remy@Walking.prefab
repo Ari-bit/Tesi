@@ -2705,6 +2705,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8624725817549299598}
   - component: {fileID: 2400703082663462388}
+  - component: {fileID: -1229748994584151955}
   m_Layer: 0
   m_Name: remy@Walking
   m_TagString: Untagged
@@ -2753,6 +2754,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-1229748994584151955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9005790522288817460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe497e1fb187c5a4a8a7b958e4cc375b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInteractive: 0
 --- !u!1 &9103457012279136528
 GameObject:
   m_ObjectHideFlags: 0
