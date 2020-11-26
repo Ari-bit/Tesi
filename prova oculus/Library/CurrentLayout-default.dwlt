@@ -74,11 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-<<<<<<< HEAD
-  controlID: 91
-=======
   controlID: 82
->>>>>>> android-copia
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -96,13 +92,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-<<<<<<< HEAD
-    width: 366
-    height: 487
-=======
     width: 312
     height: 547
->>>>>>> android-copia
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 22}
@@ -135,11 +126,7 @@ MonoBehaviour:
   m_MinSize: {x: 709, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-<<<<<<< HEAD
-  controlID: 130
-=======
   controlID: 35
->>>>>>> android-copia
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -286,11 +273,7 @@ MonoBehaviour:
   m_MinSize: {x: 201, y: 342}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-<<<<<<< HEAD
-  controlID: 135
-=======
   controlID: 36
->>>>>>> android-copia
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -776,11 +759,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 2e420000
     m_LastClickedID: 16942
-<<<<<<< HEAD
-    m_ExpandedIDs: 00000000a43d000092430000a6430000b6430000e24f0000e44f0000e64f0000e84f0000ea4f0000ec4f0000ee4f0000f04f0000f24f0000f44f0000f64f0000f84f0000fa4f0000fc4f0000fe4f000000500000025000000450000006500000085000000a5000000c5000000e5000001050000012500000
-=======
     m_ExpandedIDs: 00000000763e00008c3e0000963e00009e3e0000fa4c0000ae4f0000b04f0000b24f0000b44f0000b64f0000b84f0000ba4f0000bc4f0000be4f0000c04f0000c24f0000c44f0000c64f0000c84f0000ca4f0000cc4f0000ce4f0000d04f0000d24f0000d44f0000d64f0000d84f0000da4f0000dc4f0000de4f0000e04f0000e24f0000e44f0000e64f0000e84f0000ea4f0000ec4f0000ee4f0000f04f0000f24f0000f44f0000f64f0000f84f0000fa4f0000fc4f0000fe4f000000500000025000000450000006500000
->>>>>>> android-copia
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -805,17 +784,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-<<<<<<< HEAD
-    scrollPos: {x: 0, y: 1314}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff00000000a43d000092430000a6430000b6430000e24f0000e44f0000e64f0000e84f0000ea4f0000ec4f0000ee4f0000f04f0000f24f0000f44f0000f64f0000f84f0000fa4f0000fc4f0000fe4f000000500000025000000450000006500000085000000a5000000c5000000e5000001050000012500000a0500000
-=======
     scrollPos: {x: 0, y: 788}
     m_SelectedIDs: 
     m_LastClickedID: 0
     m_ExpandedIDs: ffffffff00000000763e00008c3e0000963e00009e3e0000fa4c0000ae4f0000b04f0000b24f0000b44f0000b64f0000b84f0000ba4f0000bc4f0000be4f0000c04f0000c24f0000c44f0000c64f0000c84f0000ca4f0000cc4f0000ce4f0000d04f0000d24f0000d44f0000d64f0000d84f0000da4f0000dc4f0000de4f0000e04f0000e24f0000e44f0000e64f0000e84f0000ea4f0000ec4f0000ee4f0000f04f0000f24f0000f44f0000f64f0000f84f0000fa4f0000fc4f0000fe4f000000500000025000000450000006500000
->>>>>>> android-copia
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -938,15 +910,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-<<<<<<< HEAD
-      m_SelectedIDs: f0420000
-      m_LastClickedID: 17136
-      m_ExpandedIDs: 1ee6ffff
-=======
       m_SelectedIDs: 84edffff
       m_LastClickedID: -4732
       m_ExpandedIDs: 64fbffff
->>>>>>> android-copia
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1006,11 +972,7 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-<<<<<<< HEAD
-    m_Target: {x: -0.82095337, y: 1.588501, z: -0.83984375}
-=======
     m_Target: {x: 6.6535416, y: 0.94131565, z: -0.91111326}
->>>>>>> android-copia
     speed: 2
     m_Value: {x: 6.6535416, y: 0.94131565, z: -0.91111326}
   m_RenderMode: 0
@@ -1060,15 +1022,9 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.38038582, y: 0.073119245, z: -0.030207846, w: -0.9214613}
     speed: 2
-<<<<<<< HEAD
-    m_Value: {x: -0.16995792, y: 0.049647685, z: -0.008553696, w: -0.98419464}
-  m_Size:
-    m_Target: 1.9396229
-=======
     m_Value: {x: -0.38037762, y: 0.073117666, z: -0.030207194, w: -0.9214414}
   m_Size:
     m_Target: 4.612072
->>>>>>> android-copia
     speed: 2
     m_Value: 4.612072
   m_Ortho:
