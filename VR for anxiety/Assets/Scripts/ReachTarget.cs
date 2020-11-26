@@ -22,7 +22,6 @@ public class ReachTarget : MonoBehaviour
         _navMeshAgent.speed = _animator.GetFloat("Forward");
         
         _target = targetManager.SetTarget();
-        Debug.Log("Start , "+ _target);
         //if (_target != null)
         //  _target.SetActive(false);
     }
@@ -49,7 +48,6 @@ public class ReachTarget : MonoBehaviour
                 //if (!_navMeshAgent.hasPath)
                 //{
                     _target= targetManager.SetTarget();
-                    Debug.Log( "Reach , " + _target);
                     return true;
                 //}
             }
