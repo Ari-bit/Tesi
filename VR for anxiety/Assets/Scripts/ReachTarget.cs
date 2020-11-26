@@ -14,9 +14,13 @@ public class ReachTarget : MonoBehaviour
 
     void Start()
     {
-        _navMeshAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
+        _navMeshAgent = GetComponent<NavMeshAgent>();
+        _navMeshAgent.stoppingDistance = 0.5f;
+        _navMeshAgent.speed = _animator.GetFloat("Forward");
+        
         _target = targetManager.SetTarget();
+        Debug.Log("Start , "+ _target);
         //if (_target != null)
         //  _target.SetActive(false);
     }
@@ -42,8 +46,9 @@ public class ReachTarget : MonoBehaviour
             {
                 //if (!_navMeshAgent.hasPath)
                 //{
-                _target= targetManager.SetTarget();
-                return true;
+                    _target= targetManager.SetTarget();
+                    Debug.Log( "Reach , " + _target);
+                    return true;
                 //}
             }
         }

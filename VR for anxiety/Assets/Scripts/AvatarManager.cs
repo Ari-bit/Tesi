@@ -23,7 +23,9 @@ public class AvatarManager : MonoBehaviour
     {
         Animator animator = avatar.GetComponent<Animator>();
         animator.runtimeAnimatorController = controller;
-        animator.SetFloat("Forward", 0.5f);
+        animator.SetFloat("Forward", 0.4f);
         avatar.AddComponent<ReachTarget>();
+        ReachTarget reach = avatar.GetComponent<ReachTarget>();
+        reach.targetManager = tpoints.GetComponent<TargetManager>();
     }
 }

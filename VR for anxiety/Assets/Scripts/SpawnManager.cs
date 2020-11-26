@@ -22,6 +22,7 @@ public class SpawnManager : MonoBehaviour
         }
 
         InvokeRepeating("spawnAvatars", 1, 5);
+        //spawnAvatars();
     }
 
     void spawnAvatars()
