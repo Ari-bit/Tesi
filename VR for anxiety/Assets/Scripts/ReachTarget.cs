@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(CapsuleCollider))]
 public class ReachTarget : MonoBehaviour
 {
     private Transform _target;
