@@ -15,4 +15,8 @@ public class PickUpInteractable : EnvInteractable
     {
         
     }
+    public override void Interact(Animator _animator)
+    {
+        _animator.SetTrigger("PickUp");
+    }
 }

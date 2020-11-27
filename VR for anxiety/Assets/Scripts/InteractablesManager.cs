@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnvInteractable : MonoBehaviour
+public class InteractablesManager : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -12,17 +12,6 @@ public class EnvInteractable : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
-    }
-
-    //public bool Interact(Animator _animator)
-    //{
-    //    _animator.SetTrigger("PickUp");
-    //    return true;
-    //}
-
-    public virtual void Interact(Animator _animator)
     {
         
     }

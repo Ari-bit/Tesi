@@ -5,12 +5,14 @@ using UnityEngine;
 public class Avatar : MonoBehaviour
 {
     public bool isInteractive =false;
-    private string task;
+    public string task;
     private string mood;
+
+    private Animator _animator;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -19,11 +21,9 @@ public class Avatar : MonoBehaviour
         
     }
 
-    private void Interact()
-    {
-        if (isInteractive == true)
-        {
-
-        }
-    }
+    //public bool Interact()
+    //{
+    //    _animator.SetTrigger("PickUp");
+    //    return true;
+    //}
 }

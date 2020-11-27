@@ -9,12 +9,15 @@ public class AvatarManager : MonoBehaviour
     [SerializeField] public GameObject tpoints;
     private Avatar[] avatars;
     private EnvInteractable[] interactables;
-    private int count = 0;
+    private string[] tasks = new string[]{"base","Interactable"};
+    private int taskIndex;
 
     // Start is called before the first frame update
     void Start()
     {
         TargetManager tmanager = tpoints.GetComponent<TargetManager>();
+
+       
     }
 
     // Update is called once per frame
@@ -32,13 +35,15 @@ public class AvatarManager : MonoBehaviour
         reach.targetManager = tpoints.GetComponent<TargetManager>();
 
         Avatar avatar = avatarObj.GetComponent<Avatar>();
-        if (count == 0)
+        taskIndex = Random.Range(0, tasks.Length);
+        avatar.task = tasks[taskIndex];
+        if (avatar.task== "Interactable")
         {
             avatar.isInteractive = true;
-            reach._target = GameObject.Find("Interactable").transform;
+            reach._target = GameObject.Find(avatar.task).transform;
+            GameObject.Find(avatar.task).GetComponent<EnvInteractable>();
             Debug.Log(reach._target);
         }
-        count++;
         //avatars.Append(avatar);
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(CapsuleCollider))]
+[RequireComponent(typeof(Avatar))]
 
 public class ReachTarget : MonoBehaviour
 {
@@ -12,17 +13,24 @@ public class ReachTarget : MonoBehaviour
 
     private NavMeshAgent _navMeshAgent;
     public TargetManager targetManager;
-    Animator _animator;
+    private Animator _animator;
+    private Avatar _avatar;
+
+    private bool hasInteracted = false;
 
     void Start()
     {
+        _avatar = GetComponent<Avatar>();
         _animator = GetComponent<Animator>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _navMeshAgent.stoppingDistance = 0.5f;
         _navMeshAgent.speed = _animator.GetFloat("Forward");
-        
-        _target = targetManager.SetTarget();
-        Debug.Log(_target);
+
+        if (_target == null)
+        {
+            _target = targetManager.SetTarget();
+        }
+            
         //if (_target != null)
         //  _target.SetActive(false);
     }
@@ -40,7 +48,7 @@ public class ReachTarget : MonoBehaviour
         //    _target.SetActive(!TargetReached());
     }
 
-    private bool TargetReached()
+    private void TargetReached()
     {
         if (!_navMeshAgent.pathPending)
         {
@@ -48,13 +56,17 @@ public class ReachTarget : MonoBehaviour
             {
                 //if (!_navMeshAgent.hasPath)
                 //{
-                    _target= targetManager.SetTarget();
-                    return true;
+                if (_avatar.isInteractive == true && hasInteracted==false)
+                {
+                    _target.gameObject.GetComponent<EnvInteractable>().Interact(_animator);
+                    hasInteracted = true;
+                    //hasInteracted= _avatar.Interact();
+                }
+                _target = targetManager.SetTarget();
+  
                 //}
             }
         }
-
-        return false;
     }
 
 }
