@@ -8,6 +8,8 @@ public class AvatarManager : MonoBehaviour
 {
     [SerializeField] public GameObject tpoints;
     private Avatar[] avatars;
+    private EnvInteractable[] interactables;
+    private int count = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +32,13 @@ public class AvatarManager : MonoBehaviour
         reach.targetManager = tpoints.GetComponent<TargetManager>();
 
         Avatar avatar = avatarObj.GetComponent<Avatar>();
+        if (count == 0)
+        {
+            avatar.isInteractive = true;
+            reach._target = GameObject.Find("Interactable").transform;
+            Debug.Log(reach._target);
+        }
+        count++;
         //avatars.Append(avatar);
     }
 }

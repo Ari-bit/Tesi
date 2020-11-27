@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Avatar : MonoBehaviour
+public class PickUpInteractable : EnvInteractable
 {
-    public bool isInteractive =false;
-    private string task;
-    private string mood;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,13 +14,5 @@ public class Avatar : MonoBehaviour
     void Update()
     {
         
-    }
-
-    private void Interact()
-    {
-        if (isInteractive == true)
-        {
-
-        }
     }
 }

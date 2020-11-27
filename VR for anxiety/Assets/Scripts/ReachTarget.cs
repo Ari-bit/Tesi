@@ -8,7 +8,7 @@ using UnityEngine.AI;
 
 public class ReachTarget : MonoBehaviour
 {
-    private Transform _target;
+    public Transform _target;
 
     private NavMeshAgent _navMeshAgent;
     public TargetManager targetManager;
@@ -22,6 +22,7 @@ public class ReachTarget : MonoBehaviour
         _navMeshAgent.speed = _animator.GetFloat("Forward");
         
         _target = targetManager.SetTarget();
+        Debug.Log(_target);
         //if (_target != null)
         //  _target.SetActive(false);
     }
