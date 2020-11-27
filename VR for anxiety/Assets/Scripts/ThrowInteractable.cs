@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnvInteractable : MonoBehaviour
+public class ThrowInteractable : EnvInteractable
 {
     // Start is called before the first frame update
     void Start()
@@ -15,9 +15,8 @@ public class EnvInteractable : MonoBehaviour
     {
         
     }
-
-    public virtual void Interact(Animator _animator)
+    public override void Interact(Animator _animator)
     {
-        
+        _animator.SetTrigger("Throw");
     }
 }
