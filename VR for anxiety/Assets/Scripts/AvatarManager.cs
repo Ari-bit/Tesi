@@ -12,13 +12,14 @@ public class AvatarManager : MonoBehaviour
     
     private List<string> tasks;
     private int taskIndex;
+    private InteractablesManager _imanager;
 
     // Start is called before the first frame update
     void Start()
     {
         TargetManager tmanager = tpoints.GetComponent<TargetManager>();
-        InteractablesManager imanager = interactables.GetComponent<InteractablesManager>();
-        tasks = imanager.GetTasks();
+        _imanager = interactables.GetComponent<InteractablesManager>();
+        tasks = _imanager.GetTasks();
         tasks.Add("Base");
     }
 
@@ -44,7 +45,8 @@ public class AvatarManager : MonoBehaviour
         if (avatar.task!= "Base")
         {
             avatar.isInteractive = true;
-            reach._target = GameObject.Find(interactables.name+"/"+avatar.task).transform;
+            //reach._target = GameObject.Find(interactables.name+"/"+avatar.task).transform;
+            reach._target = _imanager.SelectTarget(avatar.task);
             //GameObject.Find(avatar.task).GetComponent<EnvInteractable>();
             Debug.Log(reach._target);
         }

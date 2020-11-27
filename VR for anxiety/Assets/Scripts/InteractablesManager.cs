@@ -5,12 +5,11 @@ using UnityEngine;
 public class InteractablesManager : MonoBehaviour
 {
     private List<string> tasks= new List<string>();
-    private int count;
 
     // Start is called before the first frame update
     void Start()
     {
-        count = transform.childCount;
+        int count = transform.childCount;
         for (int i = 0; i < count; i++)
         {
             tasks.Add(transform.GetChild(i).name);
@@ -26,5 +25,13 @@ public class InteractablesManager : MonoBehaviour
     public List<string> GetTasks()
     {
         return tasks;
+    }
+
+    public Transform SelectTarget( string taskName)
+    {
+        GameObject taskEmpty= GameObject.Find(this.name + "/" + taskName);
+        int count = taskEmpty.transform.childCount;
+        int index = Random.Range(0, count);
+        return taskEmpty.transform.GetChild(index);
     }
 }
