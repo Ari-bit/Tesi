@@ -18,6 +18,6 @@ public class EnvInteractable : MonoBehaviour
 
     public virtual void Interact(Animator _animator)
     {
-        
+
     }
 }

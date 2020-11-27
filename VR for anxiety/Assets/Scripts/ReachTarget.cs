@@ -38,7 +38,7 @@ public class ReachTarget : MonoBehaviour
 
     void Update()
     {
-        if (_target != null)
+        if (_target != null )
         {
             _navMeshAgent.SetDestination(_target.position);
             TargetReached();
@@ -58,10 +58,12 @@ public class ReachTarget : MonoBehaviour
                 //{
                 if (_avatar.isInteractive == true && hasInteracted==false)
                 {
+
                     _target.parent.GetComponent<EnvInteractable>().Interact(_animator);
                     //_target.gameObject.GetComponent<EnvInteractable>().Interact(_animator);
                     hasInteracted = true;
                     //hasInteracted= _avatar.Interact();
+                    
                 }
                 _target = targetManager.SetTarget();
   

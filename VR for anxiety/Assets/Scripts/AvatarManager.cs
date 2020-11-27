@@ -8,7 +8,7 @@ public class AvatarManager : MonoBehaviour
 {
     [SerializeField] public GameObject tpoints;
     [SerializeField] public GameObject interactables;
-    private Avatar[] avatars;
+    private List<Avatar> avatars = new List<Avatar>();
     
     private List<string> tasks;
     private int taskIndex;
@@ -39,6 +39,7 @@ public class AvatarManager : MonoBehaviour
         reach.targetManager = tpoints.GetComponent<TargetManager>();
 
         Avatar avatar = avatarObj.GetComponent<Avatar>();
+        avatars.Add(avatar);
         taskIndex = Random.Range(0, tasks.Count);
         avatar.task = tasks[taskIndex];
 
