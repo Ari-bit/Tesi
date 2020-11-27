@@ -56,7 +56,5 @@ public class SpawnManager : MonoBehaviour
             initAvatar.Init(avatar);
             avatarCount++;
         }
-            
-        
     }
 }

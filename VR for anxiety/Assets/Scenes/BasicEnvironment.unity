@@ -555,6 +555,7 @@ MonoBehaviour:
   avatarPrefab: {fileID: 9005790522288817460, guid: 9de24629e8239b644b0a008f4f108be4,
     type: 3}
   initAvatar: {fileID: 1648388326}
+  MAX_AVATAR: 10
 --- !u!4 &1268155790
 Transform:
   m_ObjectHideFlags: 0
