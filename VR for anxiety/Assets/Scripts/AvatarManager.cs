@@ -49,7 +49,7 @@ public class AvatarManager : MonoBehaviour
             //reach._target = GameObject.Find(interactables.name+"/"+avatar.task).transform;
             reach._target = _imanager.SelectTarget(avatar.task);
             //GameObject.Find(avatar.task).GetComponent<EnvInteractable>();
-            Debug.Log(reach._target);
+            //Debug.Log(reach._target);
         }
         //avatars.Append(avatar);
     }
