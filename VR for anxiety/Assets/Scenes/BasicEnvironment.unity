@@ -979,7 +979,7 @@ MonoBehaviour:
     type: 3}
   initAvatar: {fileID: 1648388326}
   MAX_AVATAR: 10
-  _debugRay: 1
+  _debugRay: 0
 --- !u!4 &1268155790
 Transform:
   m_ObjectHideFlags: 0

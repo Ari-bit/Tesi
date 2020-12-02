@@ -58,7 +58,6 @@ public class ReachTarget : MonoBehaviour
                 //{
                 if (_avatar.isInteractive == true && hasInteracted==false)
                 {
-
                     _target.parent.GetComponent<EnvInteractable>().Interact(_animator);
                     //_target.gameObject.GetComponent<EnvInteractable>().Interact(_animator);
                     hasInteracted = true;
