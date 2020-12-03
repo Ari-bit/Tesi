@@ -31,7 +31,7 @@ public class SpawnManager : MonoBehaviour
             spawnpoints[i] = transform.GetChild(i);
         }
 
-        InvokeRepeating("spawnAvatars", 1, 5);
+        //InvokeRepeating("spawnAvatars", 1, 5);
         
         //spawnAvatars();
     }
@@ -39,10 +39,16 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (avatarCount < MAX_AVATAR && !IsInvoking("spawnAvatars"))
+        {
+            InvokeRepeating("spawnAvatars", 1, 5);
+        }
+
         if (avatarCount == MAX_AVATAR)
         {
             CancelInvoke();
         }
+
         if (_debugRay)
             DebugRaycast();
     }
