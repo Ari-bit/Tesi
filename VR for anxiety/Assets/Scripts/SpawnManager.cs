@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject avatarPrefab;
-    [SerializeField] private AvatarManager initAvatar;
+    [SerializeField] private AvatarManager avatarManager;
     [SerializeField] private int MAX_AVATAR;
     [SerializeField] private bool _debugRay;
 
@@ -32,21 +32,26 @@ public class SpawnManager : MonoBehaviour
         }
 
         //InvokeRepeating("spawnAvatars", 1, 5);
-        
         //spawnAvatars();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (avatarCount < MAX_AVATAR && !IsInvoking("spawnAvatars"))
         {
             InvokeRepeating("spawnAvatars", 1, 5);
         }
-
-        if (avatarCount == MAX_AVATAR)
+        else if (avatarCount == MAX_AVATAR)
         {
             CancelInvoke();
+        }
+        else if (avatarCount > MAX_AVATAR)
+        {
+            while (avatarCount!= MAX_AVATAR)
+            {
+                avatarManager.RemoveAvatar();
+                avatarCount--;
+            }
         }
 
         if (_debugRay)
@@ -55,7 +60,6 @@ public class SpawnManager : MonoBehaviour
 
     void spawnAvatars()
     {
-        
         spawnIndex = Random.Range(0, spawnCount);
         Vector3 viewPos = cam.WorldToViewportPoint(spawnpoints[spawnIndex].position);
 
@@ -68,7 +72,7 @@ public class SpawnManager : MonoBehaviour
             {
                 Debug.Log("ostacolo davanti a " + spawnpoints[spawnIndex].name + " , ostacolo: "+Physics.RaycastAll(cam.transform.position, dirToSpawn, dstToSpawn)[0].transform.name);
                 GameObject avatar = Instantiate(avatarPrefab, spawnpoints[spawnIndex].position, avatarPrefab.transform.rotation, transform.parent);
-                initAvatar.Init(avatar);
+                avatarManager.Init(avatar);
                 avatarCount++;
             }
             else
@@ -79,11 +83,10 @@ public class SpawnManager : MonoBehaviour
         else
         {
             GameObject avatar = Instantiate(avatarPrefab, spawnpoints[spawnIndex].position, avatarPrefab.transform.rotation, transform.parent);
-            //initAvatar = new InitializeAvatar();
-            initAvatar.Init(avatar);
+            //avatarManager = new InitializeAvatar();
+            avatarManager.Init(avatar);
             avatarCount++;
         }
-
 
         //if (viewPos.x >= 0 && viewPos.x <= 1 && viewPos.y >= 0 && viewPos.y <= 1 && viewPos.z > 0)
         //{
@@ -92,8 +95,8 @@ public class SpawnManager : MonoBehaviour
         //else
         //{
         //    GameObject avatar = Instantiate(avatarPrefab, spawnpoints[spawnIndex].position, avatarPrefab.transform.rotation, transform.parent);
-        //    //initAvatar = new InitializeAvatar();
-        //    initAvatar.Init(avatar);
+        //    //avatarManager = new InitializeAvatar();
+        //    avatarManager.Init(avatar);
         //    avatarCount++;
         //}
     }

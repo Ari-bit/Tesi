@@ -8,7 +8,7 @@ public class AvatarManager : MonoBehaviour
 {
     [SerializeField] public GameObject tpoints;
     [SerializeField] public GameObject interactables;
-    private List<Avatar> avatars = new List<Avatar>();
+    public List<Avatar> avatars = new List<Avatar>();
     
     private List<string> tasks;
     private int taskIndex;
@@ -52,5 +52,12 @@ public class AvatarManager : MonoBehaviour
             //Debug.Log(reach._target);
         }
         //avatars.Append(avatar);
+    }
+
+    public void RemoveAvatar()
+    {
+        Avatar[] avatarArray = avatars.ToArray();
+        Destroy(avatarArray[0].transform.gameObject);
+        avatars.Remove(avatarArray[0]);
     }
 }

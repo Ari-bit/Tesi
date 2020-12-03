@@ -479,6 +479,28 @@ Transform:
   m_Father: {fileID: 1268155790}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &788222915 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7415382818044412864, guid: 335e000812250a544b4c17ade4c1391e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1144214395}
+  m_PrefabAsset: {fileID: 0}
+--- !u!208 &788222916
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788222915}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.5, y: 1, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &804081586
 GameObject:
   m_ObjectHideFlags: 0
@@ -977,8 +999,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   avatarPrefab: {fileID: 9005790522288817460, guid: 9de24629e8239b644b0a008f4f108be4,
     type: 3}
-  initAvatar: {fileID: 1648388326}
-  MAX_AVATAR: 10
+  avatarManager: {fileID: 1648388326}
+  MAX_AVATAR: 3
   _debugRay: 0
 --- !u!4 &1268155790
 Transform:
@@ -1444,6 +1466,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tpoints: {fileID: 1958400537}
   interactables: {fileID: 1324968802}
+  avatars: []
 --- !u!1001 &1732534561
 PrefabInstance:
   m_ObjectHideFlags: 0
