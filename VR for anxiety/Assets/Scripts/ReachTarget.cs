@@ -17,6 +17,7 @@ public class ReachTarget : MonoBehaviour
     private Avatar _avatar;
 
     private bool hasInteracted = false;
+    private Camera cam;
 
     void Start()
     {
@@ -25,6 +26,8 @@ public class ReachTarget : MonoBehaviour
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _navMeshAgent.stoppingDistance = 0.5f;
         _navMeshAgent.speed = _animator.GetFloat("Forward");
+
+        cam= Camera.main;
 
         if (_target == null)
         {
@@ -56,19 +59,30 @@ public class ReachTarget : MonoBehaviour
             {
                 //if (!_navMeshAgent.hasPath)
                 //{
-                if (_avatar.isInteractive == true && hasInteracted==false)
+                if (_avatar.isInteractive == true && hasInteracted==false && _avatar.isToRemove==false)
                 {
                     _target.parent.GetComponent<EnvInteractable>().Interact(_animator);
                     //_target.gameObject.GetComponent<EnvInteractable>().Interact(_animator);
                     hasInteracted = true;
                     //hasInteracted= _avatar.Interact();
+                    _target = targetManager.SetTarget();
                 }
                 else if (_avatar.isToRemove==true)
                 {
-                    Destroy(_avatar.transform.gameObject);
+                    //l'avatar da rimuovere ritorna al suo spawnpoint originale e viene distrutto se l'utente non sta guardando.
+                    //se sta guardando, l'avatar va verso il prossimo target e se non è visto viene distrutto 
+                    Spawn spawn= new Spawn();
+                    if (spawn.IsSpawnHidden(_avatar.spawnPos, cam) == true)
+                    {
+                        Destroy(_avatar.transform.gameObject);
+                    }
+                    else
+                    {
+                        _target = targetManager.SetTarget();
+                        _avatar.spawnPos = _target;
+                    }
                 }
-
-                _target = targetManager.SetTarget();
+                else _target = targetManager.SetTarget();
                 //}
             }
         }

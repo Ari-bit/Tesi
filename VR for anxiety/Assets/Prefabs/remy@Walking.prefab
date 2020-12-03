@@ -2706,7 +2706,7 @@ GameObject:
   - component: {fileID: 8624725817549299598}
   - component: {fileID: 2400703082663462388}
   - component: {fileID: -1229748994584151955}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: remy@Walking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2767,6 +2767,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInteractive: 0
+  isToRemove: 0
+  task: 
+  spawnPos: {fileID: 0}
 --- !u!1 &9103457012279136528
 GameObject:
   m_ObjectHideFlags: 0
