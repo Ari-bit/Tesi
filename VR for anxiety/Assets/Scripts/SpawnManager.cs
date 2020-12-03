@@ -10,8 +10,8 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private bool _debugRay;
 
     private int spawnIndex;
+    private Transform spawnPos;
     private Transform[] spawnpoints;
-    private Vector3 spawnPos;
     private int spawnCount;
     private Camera cam;
     private int avatarCount =0;
@@ -61,46 +61,40 @@ public class SpawnManager : MonoBehaviour
     void spawnAvatars()
     {
         spawnIndex = Random.Range(0, spawnCount);
-        Transform spawnPos = spawnpoints[spawnIndex];
-        Vector3 viewPos = cam.WorldToViewportPoint(spawnPos.position);
+        spawnPos = spawnpoints[spawnIndex];
+        //Spawn spawn = new Spawn();
+        //if (spawn.IsSpawnHidden(spawnPos)==true)
+        if (IsSpawnHidden() == true)
+        {
+            GameObject avatar = Instantiate(avatarPrefab, spawnpoints[spawnIndex].position, avatarPrefab.transform.rotation, transform.parent);
+            avatarManager.Init(avatar, spawnPos);
+            avatarCount++;
+        }
+    }
 
+    public bool IsSpawnHidden()
+    {
+        Vector3 viewPos = cam.WorldToViewportPoint(spawnPos.position);
         if (viewPos.x >= 0 && viewPos.x <= 1 && viewPos.y >= 0 && viewPos.y <= 1 && viewPos.z > 0)
         {
             dirToSpawn = (spawnPos.position - cam.transform.position).normalized;
-            dstToSpawn= Vector3.Distance(cam.transform.position, spawnPos.position);
+            dstToSpawn = Vector3.Distance(cam.transform.position, spawnPos.position);
             rayOrigin = cam.transform.position;
             if (Physics.Raycast(rayOrigin, dirToSpawn, dstToSpawn))
             {
-                Debug.Log("ostacolo davanti a " + spawnPos.name + " , ostacolo: "+Physics.RaycastAll(cam.transform.position, dirToSpawn, dstToSpawn)[0].transform.name);
-                GameObject avatar = Instantiate(avatarPrefab, spawnPos.position, avatarPrefab.transform.rotation, transform.parent);
-                avatarManager.Init(avatar, spawnPos);
-                avatarCount++;
+                Debug.Log("ostacolo davanti a " + spawnPos.name + " , ostacolo: " + Physics.RaycastAll(cam.transform.position, dirToSpawn, dstToSpawn)[0].transform.name);
+                return true;
             }
             else
             {
                 Debug.Log("sto guardando " + spawnpoints[spawnIndex].name);
+                return false;
             }
         }
-        else
-        {
-            GameObject avatar = Instantiate(avatarPrefab, spawnpoints[spawnIndex].position, avatarPrefab.transform.rotation, transform.parent);
-            //avatarManager = new InitializeAvatar();
-            avatarManager.Init(avatar, spawnPos);
-            avatarCount++;
-        }
+        else return true;
 
-        //if (viewPos.x >= 0 && viewPos.x <= 1 && viewPos.y >= 0 && viewPos.y <= 1 && viewPos.z > 0)
-        //{
-        //    Debug.Log("sto guardando " + spawnpoints[spawnIndex].name);
-        //}
-        //else
-        //{
-        //    GameObject avatar = Instantiate(avatarPrefab, spawnpoints[spawnIndex].position, avatarPrefab.transform.rotation, transform.parent);
-        //    //avatarManager = new InitializeAvatar();
-        //    avatarManager.Init(avatar);
-        //    avatarCount++;
-        //}
     }
+
     private void DebugRaycast()
     {
         Debug.DrawRay(rayOrigin, dirToSpawn * dstToSpawn, Color.red);
