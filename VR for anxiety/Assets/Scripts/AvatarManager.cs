@@ -43,6 +43,8 @@ public class AvatarManager : MonoBehaviour
         taskIndex = Random.Range(0, tasks.Count);
         avatar.task = tasks[taskIndex];
         avatar.spawnPos = spawnPos;
+        avatar.mood = Random.Range(1, 5);
+        avatar.ShowMood();
 
         if (avatar.task!= "Base")
         {

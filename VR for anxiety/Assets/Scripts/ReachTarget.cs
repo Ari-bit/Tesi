@@ -59,7 +59,8 @@ public class ReachTarget : MonoBehaviour
             {
                 //if (!_navMeshAgent.hasPath)
                 //{
-                if (_avatar.isInteractive == true && hasInteracted==false && _avatar.isToRemove==false)
+                //EnvInteractable interactable = _target.parent.GetComponent<EnvInteractable>();
+                if (_avatar.isInteractive  && hasInteracted==false && _avatar.isToRemove==false )
                 {
                     _target.parent.GetComponent<EnvInteractable>().Interact(_animator);
                     //_target.gameObject.GetComponent<EnvInteractable>().Interact(_animator);

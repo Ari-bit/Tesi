@@ -640,6 +640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a377fe563b983b4dbcb33b8048dfa4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBusy: 0
 --- !u!1 &861557057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1000,7 +1001,7 @@ MonoBehaviour:
   avatarPrefab: {fileID: 9005790522288817460, guid: 9de24629e8239b644b0a008f4f108be4,
     type: 3}
   avatarManager: {fileID: 1648388326}
-  MAX_AVATAR: 4
+  MAX_AVATAR: 20
 --- !u!4 &1268155790
 Transform:
   m_ObjectHideFlags: 0
@@ -1418,6 +1419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7777eaa27d0d1dc44a59da630677b2fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBusy: 0
 --- !u!1 &1648388324
 GameObject:
   m_ObjectHideFlags: 0
