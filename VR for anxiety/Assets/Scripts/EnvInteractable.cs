@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class EnvInteractable : MonoBehaviour
 {
-    public bool isBusy = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Dictionary<GameObject, bool> objects;
+    public int count;
 
     // Update is called once per frame
     void Update()

@@ -7,7 +7,12 @@ public class ThrowInteractable : EnvInteractable
     // Start is called before the first frame update
     void Start()
     {
-        
+        count = transform.childCount;
+        objects = new Dictionary<GameObject, bool>();
+        for (int i = 0; i < count; i++)
+        {
+            objects.Add(transform.GetChild(i).gameObject, false);
+        }
     }
 
     // Update is called once per frame

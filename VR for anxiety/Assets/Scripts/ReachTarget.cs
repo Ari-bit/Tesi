@@ -10,6 +10,7 @@ using UnityEngine.AI;
 public class ReachTarget : MonoBehaviour
 {
     public Transform _target;
+    public Transform _currentTarget;
 
     private NavMeshAgent _navMeshAgent;
     public TargetManager targetManager;
@@ -59,10 +60,15 @@ public class ReachTarget : MonoBehaviour
             {
                 //if (!_navMeshAgent.hasPath)
                 //{
-                //EnvInteractable interactable = _target.parent.GetComponent<EnvInteractable>();
+                
                 if (_avatar.isInteractive  && hasInteracted==false && _avatar.isToRemove==false )
                 {
-                    _target.parent.GetComponent<EnvInteractable>().Interact(_animator);
+                    EnvInteractable interactable = _target.parent.GetComponent<EnvInteractable>();
+                    if (interactable.objects[_target.transform.gameObject] == false)
+                    {
+                        interactable.Interact(_animator);
+                        _currentTarget = _target;
+                    }
                     //_target.gameObject.GetComponent<EnvInteractable>().Interact(_animator);
                     hasInteracted = true;
                     //hasInteracted= _avatar.Interact();
