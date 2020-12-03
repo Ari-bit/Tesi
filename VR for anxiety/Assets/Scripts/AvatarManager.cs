@@ -29,7 +29,7 @@ public class AvatarManager : MonoBehaviour
 
     }
 
-    public void Init(GameObject avatarObj)
+    public void Init(GameObject avatarObj, Transform spawnPos)
     {
         Animator animator = avatarObj.GetComponent<Animator>();
         animator.SetFloat("Forward", 0.4f);
@@ -42,6 +42,7 @@ public class AvatarManager : MonoBehaviour
         avatars.Add(avatar);
         taskIndex = Random.Range(0, tasks.Count);
         avatar.task = tasks[taskIndex];
+        avatar.spawnPos = spawnPos;
 
         if (avatar.task!= "Base")
         {
@@ -57,7 +58,10 @@ public class AvatarManager : MonoBehaviour
     public void RemoveAvatar()
     {
         Avatar[] avatarArray = avatars.ToArray();
-        Destroy(avatarArray[0].transform.gameObject);
+        Avatar avatarToRemove = avatarArray[0];
+        avatarToRemove.isToRemove = true;
+        ReachTarget reach = avatarToRemove.GetComponent<ReachTarget>();
+        reach._target = avatarToRemove.spawnPos;
         avatars.Remove(avatarArray[0]);
     }
 }

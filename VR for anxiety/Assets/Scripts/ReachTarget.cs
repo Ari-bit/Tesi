@@ -48,7 +48,7 @@ public class ReachTarget : MonoBehaviour
         //    _target.SetActive(!TargetReached());
     }
 
-    private void TargetReached()
+    public void TargetReached()
     {
         if (!_navMeshAgent.pathPending)
         {
@@ -62,10 +62,13 @@ public class ReachTarget : MonoBehaviour
                     //_target.gameObject.GetComponent<EnvInteractable>().Interact(_animator);
                     hasInteracted = true;
                     //hasInteracted= _avatar.Interact();
-                    
                 }
+                else if (_avatar.isToRemove==true)
+                {
+                    Destroy(_avatar.transform.gameObject);
+                }
+
                 _target = targetManager.SetTarget();
-  
                 //}
             }
         }

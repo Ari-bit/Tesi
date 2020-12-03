@@ -61,18 +61,19 @@ public class SpawnManager : MonoBehaviour
     void spawnAvatars()
     {
         spawnIndex = Random.Range(0, spawnCount);
-        Vector3 viewPos = cam.WorldToViewportPoint(spawnpoints[spawnIndex].position);
+        Transform spawnPos = spawnpoints[spawnIndex];
+        Vector3 viewPos = cam.WorldToViewportPoint(spawnPos.position);
 
         if (viewPos.x >= 0 && viewPos.x <= 1 && viewPos.y >= 0 && viewPos.y <= 1 && viewPos.z > 0)
         {
-            dirToSpawn = (spawnpoints[spawnIndex].position - cam.transform.position).normalized;
-            dstToSpawn= Vector3.Distance(cam.transform.position, spawnpoints[spawnIndex].position);
+            dirToSpawn = (spawnPos.position - cam.transform.position).normalized;
+            dstToSpawn= Vector3.Distance(cam.transform.position, spawnPos.position);
             rayOrigin = cam.transform.position;
             if (Physics.Raycast(rayOrigin, dirToSpawn, dstToSpawn))
             {
-                Debug.Log("ostacolo davanti a " + spawnpoints[spawnIndex].name + " , ostacolo: "+Physics.RaycastAll(cam.transform.position, dirToSpawn, dstToSpawn)[0].transform.name);
-                GameObject avatar = Instantiate(avatarPrefab, spawnpoints[spawnIndex].position, avatarPrefab.transform.rotation, transform.parent);
-                avatarManager.Init(avatar);
+                Debug.Log("ostacolo davanti a " + spawnPos.name + " , ostacolo: "+Physics.RaycastAll(cam.transform.position, dirToSpawn, dstToSpawn)[0].transform.name);
+                GameObject avatar = Instantiate(avatarPrefab, spawnPos.position, avatarPrefab.transform.rotation, transform.parent);
+                avatarManager.Init(avatar, spawnPos);
                 avatarCount++;
             }
             else
@@ -84,7 +85,7 @@ public class SpawnManager : MonoBehaviour
         {
             GameObject avatar = Instantiate(avatarPrefab, spawnpoints[spawnIndex].position, avatarPrefab.transform.rotation, transform.parent);
             //avatarManager = new InitializeAvatar();
-            avatarManager.Init(avatar);
+            avatarManager.Init(avatar, spawnPos);
             avatarCount++;
         }
 
