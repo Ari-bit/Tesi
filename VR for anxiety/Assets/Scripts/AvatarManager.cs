@@ -49,20 +49,18 @@ public class AvatarManager : MonoBehaviour
         if (avatar.task!= "Base")
         {
             avatar.isInteractive = true;
-            //reach._target = GameObject.Find(interactables.name+"/"+avatar.task).transform;
             reach._target = _imanager.SelectTarget(avatar.task);
-            //GameObject.Find(avatar.task).GetComponent<EnvInteractable>();
-            //Debug.Log(reach._target);
         }
-        //avatars.Append(avatar);
     }
 
     public void RemoveAvatar()
     {
         Avatar[] avatarArray = avatars.ToArray();
+        //l'avatar da rimuovere è il più vecchio generato
         Avatar avatarToRemove = avatarArray[0];
         avatarToRemove.isToRemove = true;
         ReachTarget reach = avatarToRemove.GetComponent<ReachTarget>();
+        //il suo target diventa lo spawn point da cui è nato
         reach._target = avatarToRemove.spawnPos;
         avatars.Remove(avatarArray[0]);
     }

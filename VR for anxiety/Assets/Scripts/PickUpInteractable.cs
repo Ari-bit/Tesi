@@ -9,10 +9,10 @@ public class PickUpInteractable : EnvInteractable
     void Start()
     {
         count = transform.childCount;
-        objects = new Dictionary<GameObject, bool>();
+        interactablesBusy = new Dictionary<GameObject, bool>();
         for (int i = 0; i < count; i++)
         {
-            objects.Add(transform.GetChild(i).gameObject, false);
+            interactablesBusy.Add(transform.GetChild(i).gameObject, false);
         }
     }
 

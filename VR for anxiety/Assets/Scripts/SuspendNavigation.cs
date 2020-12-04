@@ -12,8 +12,10 @@ public class SuspendNavigation : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         GetNavMeshAgent(animator).isStopped = true;
+
+        //segno l'interactable su cui viene fatta l'animazione come occupato
         interactable= animator.GetComponentInParent<ReachTarget>()._currentTarget.transform.gameObject;
-        interactable.GetComponentInParent<EnvInteractable>().objects[interactable] = true;
+        interactable.GetComponentInParent<EnvInteractable>().interactablesBusy[interactable] = true;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -28,7 +30,7 @@ public class SuspendNavigation : StateMachineBehaviour
         GetNavMeshAgent(animator).isStopped = false;
         interactable = animator.GetComponentInParent<ReachTarget>()._currentTarget.transform.gameObject;
         //interactable.transform.parent.GetComponent<EnvInteractable>().objects[interactable] = false;
-        interactable.GetComponentInParent<EnvInteractable>().objects[interactable] = false;
+        interactable.GetComponentInParent<EnvInteractable>().interactablesBusy[interactable] = false;
     }
 
     public NavMeshAgent GetNavMeshAgent(Animator animator)

@@ -64,14 +64,13 @@ public class ReachTarget : MonoBehaviour
                 if (_avatar.isInteractive  && hasInteracted==false && _avatar.isToRemove==false )
                 {
                     EnvInteractable interactable = _target.parent.GetComponent<EnvInteractable>();
-                    if (interactable.objects[_target.transform.gameObject] == false)
+                    if (interactable.interactablesBusy[_target.transform.gameObject] == false)
                     {
                         interactable.Interact(_animator);
                         _currentTarget = _target;
                     }
                     //_target.gameObject.GetComponent<EnvInteractable>().Interact(_animator);
                     hasInteracted = true;
-                    //hasInteracted= _avatar.Interact();
                     _target = targetManager.SetTarget();
                 }
                 else if (_avatar.isToRemove==true)

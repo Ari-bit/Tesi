@@ -8,8 +8,6 @@ public class Spawn
     private Vector3 dirToSpawn;
     private float dstToSpawn;
 
-    private bool _debugRay=false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +18,6 @@ public class Spawn
     void Update()
     {
 
-        if (_debugRay)
-            DebugRaycast();
     }
 
     public bool IsSpawnHidden(Transform spawnPos, Camera cam)
@@ -48,8 +44,8 @@ public class Spawn
         else return true;
         
     }
-    private void DebugRaycast()
-    {
-        Debug.DrawRay(rayOrigin, dirToSpawn * dstToSpawn, Color.red);
-    }
+    //private void DebugRaycast()
+    //{
+    //    Debug.DrawRay(rayOrigin, dirToSpawn * dstToSpawn, Color.red);
+    //}
 }
