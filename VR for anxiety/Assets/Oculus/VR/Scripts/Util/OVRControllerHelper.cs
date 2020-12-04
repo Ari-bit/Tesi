@@ -81,8 +81,9 @@ public class OVRControllerHelper : MonoBehaviour
 				activeControllerType = ControllerType.Quest2;
 				break;
 			default:
-				activeControllerType = ControllerType.QuestAndRiftS;
-				break;
+                //activeControllerType = ControllerType.QuestAndRiftS;
+                activeControllerType = ControllerType.Quest2;
+                break;
 		}
 
 		Debug.LogFormat("OVRControllerHelp: Active controller type: {0} for product {1}", activeControllerType, OVRPlugin.productName);

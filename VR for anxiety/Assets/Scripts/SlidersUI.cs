@@ -3,11 +3,12 @@ using UnityEngine;
 using System.Collections;
 using System.Runtime.InteropServices;
 
-public class SliderMood : MonoBehaviour
+public class SlidersUI : MonoBehaviour
 {
 
     private float moodValue = 0.0f;
     private float avatarCount = 10;
+    private float controllerRadius = 0.5f;
 
     void OnGUI()
     {
@@ -18,11 +19,18 @@ public class SliderMood : MonoBehaviour
 
         GUI.Box(new Rect(10, 60, 130, 50), "Avatar Volume: "+ (int)Math.Round(avatarCount));
         avatarCount = (GUI.HorizontalSlider(new Rect(25, 90, 100, 30), avatarCount, 0, 40));
+
+        GUI.Box(new Rect(10, 110, 130, 50), "Controller Radius: " + controllerRadius);
+        controllerRadius = (GUI.HorizontalSlider(new Rect(25, 140, 100, 30), controllerRadius, 0.5f, 4));
     }
 
     public int GetAvatarCount()
     {
         return (int)Math.Round(avatarCount);
+    }
+    public float GetControllerRadius()
+    {
+        return controllerRadius;
     }
 
 }

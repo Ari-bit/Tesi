@@ -42,6 +42,7 @@ public class Avatar : MonoBehaviour
                 break;
             case 4:
                 moodSprite.color = Color.red;
+                this.GetComponentInParent<Animator>().SetFloat("Forward", 0.6f );
                 break;
             default:
                 break;

@@ -7,7 +7,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject avatarPrefab;
     [SerializeField] private AvatarManager avatarManager;
     //[SerializeField] private int MAX_AVATAR;
-    [SerializeField] private SliderMood slider;
+    [SerializeField] private SlidersUI slider;
 
     private int spawnIndex;
     private Transform spawnPos;
