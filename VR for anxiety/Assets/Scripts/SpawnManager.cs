@@ -6,7 +6,8 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject avatarPrefab;
     [SerializeField] private AvatarManager avatarManager;
-    [SerializeField] private int MAX_AVATAR;
+    //[SerializeField] private int MAX_AVATAR;
+    [SerializeField] private SliderMood slider;
 
     private int spawnIndex;
     private Transform spawnPos;
@@ -14,6 +15,8 @@ public class SpawnManager : MonoBehaviour
     private int spawnCount;
     private Camera cam;
     private int avatarCount =0;
+
+    private int MAX_AVATAR;
 
     //private Vector3 rayOrigin;
     //private Vector3 dirToSpawn;
@@ -30,12 +33,14 @@ public class SpawnManager : MonoBehaviour
             spawnpoints[i] = transform.GetChild(i);
         }
 
+        
         //InvokeRepeating("spawnAvatars", 1, 5);
         //spawnAvatars();
     }
 
     void Update()
     {
+        MAX_AVATAR = slider.GetAvatarCount();
         if (avatarCount < MAX_AVATAR && !IsInvoking("spawnAvatars"))
         {
             InvokeRepeating("spawnAvatars", 1, 5);
