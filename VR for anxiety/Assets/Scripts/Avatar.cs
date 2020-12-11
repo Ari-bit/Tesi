@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Avatar : MonoBehaviour
 {
@@ -12,19 +12,29 @@ public class Avatar : MonoBehaviour
     public Transform spawnPos;
     private SpriteRenderer moodSprite;
 
-    private Animator _animator;
+    private StateMachine _stateMachine;
+    //public EnvInteractable Target { get; set; }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        _animator = GetComponent<Animator>();
+        var navMeshAgent = GetComponent<NavMeshAgent>();
+        var animator = GetComponent<Animator>();
+
+        _stateMachine = new StateMachine();
+
+        //var search = new SearchForInteractable(this);
+        var moveToSelected = new ReachTarget(this, navMeshAgent, animator);
+        //var interact = new Interact(this, animator);
+
+        //At(moveToSelected, interact, TargetReached());
+        _stateMachine.SetState(moveToSelected);
+
+        void At(IState from, IState to, Func<bool> condition) => _stateMachine.AddTransition(from, to, condition);
+
+        Func<bool> TargetReached() => () => moveToSelected._target != null && !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private void Update() => _stateMachine.Tick();
 
     public void ShowMood()
     {
