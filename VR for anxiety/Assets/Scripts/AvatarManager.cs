@@ -13,11 +13,12 @@ public class AvatarManager : MonoBehaviour
     private List<string> tasks;
     private int taskIndex;
     private InteractablesManager _imanager;
+    private TargetManager _tmanager;
 
     // Start is called before the first frame update
     void Start()
     {
-        TargetManager tmanager = tpoints.GetComponent<TargetManager>();
+        _tmanager = tpoints.GetComponent<TargetManager>();
         _imanager = interactables.GetComponent<InteractablesManager>();
         tasks = _imanager.GetTasks();
         tasks.Add("Base");
@@ -34,22 +35,23 @@ public class AvatarManager : MonoBehaviour
         Animator animator = avatarObj.GetComponent<Animator>();
         animator.SetFloat("Forward", 0.4f);
 
-        avatarObj.AddComponent<ReachTarget>();
-        ReachTarget reach = avatarObj.GetComponent<ReachTarget>();
-        reach.targetManager = tpoints.GetComponent<TargetManager>();
+        //avatarObj.AddComponent<ReachTarget>();
+        //ReachTarget reach = avatarObj.GetComponent<ReachTarget>();
+        //reach.targetManager = tpoints.GetComponent<TargetManager>();
 
         Avatar avatar = avatarObj.GetComponent<Avatar>();
         avatars.Add(avatar);
         taskIndex = Random.Range(0, tasks.Count);
         avatar.task = tasks[taskIndex];
         avatar.spawnPos = spawnPos;
+        //avatar.targetManager = _tmanager;
         avatar.mood = Random.Range(1, 5);
         avatar.ShowMood();
 
         if (avatar.task!= "Base")
         {
             avatar.isInteractive = true;
-            reach._target = _imanager.SelectTarget(avatar.task);
+            //avatar.Target = _imanager.SelectTarget(avatar.task);
         }
     }
 

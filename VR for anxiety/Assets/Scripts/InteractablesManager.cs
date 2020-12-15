@@ -5,6 +5,7 @@ using UnityEngine;
 public class InteractablesManager : MonoBehaviour
 {
     private List<string> tasks= new List<string>();
+    
 
     // Start is called before the first frame update
     void Start()

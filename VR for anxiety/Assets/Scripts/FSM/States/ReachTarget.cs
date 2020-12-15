@@ -9,7 +9,7 @@ public class ReachTarget : IState
     public Transform _currentTarget;
 
     private NavMeshAgent _navMeshAgent;
-    public TargetManager targetManager;
+    public TargetManager _targetManager;
     private Animator _animator;
     private Avatar _avatar;
 
@@ -26,21 +26,7 @@ public class ReachTarget : IState
         _navMeshAgent = navMeshAgent;
         _animator = animator;
     }
-    void Start()
-    {
-        _navMeshAgent.stoppingDistance = 0.5f;
-        _navMeshAgent.speed = _animator.GetFloat("Forward");
 
-        cam= Camera.main;
-
-        if (_target == null)
-        {
-            _target = targetManager.SetTarget();
-        }
-            
-        //if (_target != null)
-        //  _target.SetActive(false);
-    }
 
     public void Tick()
     {
@@ -52,17 +38,27 @@ public class ReachTarget : IState
 
     public void OnEnter()
     {
+        _navMeshAgent.stoppingDistance = 0.5f;
+        _navMeshAgent.speed = _animator.GetFloat("Forward");
+
+        cam = Camera.main;
+
+        //if (_target == null)
+        //{
+            _target = _avatar.Target;
+            //_target = _targetManager.SetTarget();
+        //}
         TimeStuck = 0f;
         _navMeshAgent.enabled = true;
         //_navMeshAgent.SetDestination(_avatar.Target.transform.position);
         _navMeshAgent.SetDestination(_target.position);
-        _animator.SetFloat(Speed, 1f);
+        //_animator.SetFloat(Speed, 0.4f);
     }
 
     public void OnExit()
     {
-        _navMeshAgent.enabled = false;
-        _animator.SetFloat(Speed, 0f);
+        //_navMeshAgent.enabled = false;
+        //_animator.SetFloat(Speed, 0f);
     }
 
     //void Update()
