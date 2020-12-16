@@ -19,11 +19,14 @@ public class Interact : IState
         interactable.Interact(_animator);
     }
 
-    public void OnEnter() { }
+    public void OnEnter()
+    {
+        _avatar.hasInteracted = true;
+    }
 
     public void OnExit()
     {
-        _avatar.hasInteracted = true;
+        
     }
 
 

@@ -39,9 +39,9 @@ public class Avatar : MonoBehaviour
         At(selectTarget, moveToSelected, HasTarget());
         At(findInteractable, moveToSelected, HasTarget());
         At(moveToSelected, selectTarget, TargetReached());
-        At(selectTarget, findInteractable, () => isInteractive);
+        At(selectTarget, findInteractable, () => isInteractive&& !hasInteracted);
         At(moveToSelected, interact, PlayAnimation());
-        At(interact, selectTarget, ()=>hasInteracted==true);
+        At(interact, selectTarget, ()=>hasInteracted);
 
         _stateMachine.SetState(selectTarget);
 
