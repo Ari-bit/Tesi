@@ -30,7 +30,7 @@ public class AvatarManager : MonoBehaviour
 
     }
 
-    public void Init(GameObject avatarObj, Transform spawnPos)
+    public void Init(GameObject avatarObj, Transform[] spawnPos)
     {
         Animator animator = avatarObj.GetComponent<Animator>();
         animator.SetFloat("Forward", 0.4f);
@@ -44,7 +44,7 @@ public class AvatarManager : MonoBehaviour
         taskIndex = Random.Range(0, tasks.Count);
         avatar.task = tasks[taskIndex];
         avatar.spawnPos = spawnPos;
-        //avatar.targetManager = _tmanager;
+        avatar.targetManager = _tmanager;
         avatar.mood = Random.Range(1, 5);
         avatar.ShowMood();
 
@@ -59,11 +59,12 @@ public class AvatarManager : MonoBehaviour
     {
         Avatar[] avatarArray = avatars.ToArray();
         //l'avatar da rimuovere è il più vecchio generato
-        Avatar avatarToRemove = avatarArray[0];
-        avatarToRemove.isToRemove = true;
-        ReachTarget reach = avatarToRemove.GetComponent<ReachTarget>();
+        Avatar _avatarToRemove = avatarArray[0];
+        _avatarToRemove.isToRemove = true;
+        //_avatarToRemove.Target = _avatarToRemove.spawnPos;
+        //ReachTarget reach = avatarToRemove.GetComponent<ReachTarget>();
         //il suo target diventa lo spawn point da cui è nato
-        reach._target = avatarToRemove.spawnPos;
+        //reach._target = avatarToRemove.spawnPos;
         avatars.Remove(avatarArray[0]);
     }
 }

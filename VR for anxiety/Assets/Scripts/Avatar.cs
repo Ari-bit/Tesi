@@ -11,20 +11,18 @@ public class Avatar : MonoBehaviour
     public bool hasInteracted = false;
     public string task;
     public int mood;    //scala da 1 a 4 dove 1 è un mood positivo e 4 è negativo
-    public Transform spawnPos;
+    public Transform[] spawnPos;
     private SpriteRenderer moodSprite;
 
-    private TargetManager targetManager;
+    public TargetManager targetManager;
     private StateMachine _stateMachine;
 
     public Transform Target;
     //public EnvInteractable Target { get; set; }
-
-    private void Awake()
+    private void Start()
     {
-        targetManagerObj = GameObject.Find("Target Points");
-        targetManager = targetManagerObj.GetComponent<TargetManager>();
-
+        //targetManagerObj = GameObject.Find("Target Points");
+        //targetManager = targetManagerObj.GetComponent<TargetManager>();
 
         var navMeshAgent = GetComponent<NavMeshAgent>();
         var animator = GetComponent<Animator>();
@@ -35,6 +33,7 @@ public class Avatar : MonoBehaviour
         var selectTarget= new ChooseTarget(this, targetManager);
         var moveToSelected = new ReachTarget(this, navMeshAgent, animator);
         var interact = new Interact(this, animator);
+        var die = new Die(this, navMeshAgent, animator, spawnPos);
 
         At(selectTarget, moveToSelected, HasTarget());
         At(findInteractable, moveToSelected, HasTarget());
@@ -42,6 +41,9 @@ public class Avatar : MonoBehaviour
         At(selectTarget, findInteractable, () => isInteractive&& !hasInteracted);
         At(moveToSelected, interact, PlayAnimation());
         At(interact, selectTarget, ()=>hasInteracted);
+
+        _stateMachine.AddAnyTransition(die, () => isToRemove);
+        At(die, selectTarget, SpawnReached());
 
         _stateMachine.SetState(selectTarget);
 
@@ -52,6 +54,8 @@ public class Avatar : MonoBehaviour
         Func<bool> PlayAnimation() => () =>
             Target != null && !navMeshAgent.pathPending &&
             navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && isInteractive && !hasInteracted;
+        Func<bool> SpawnReached() => () => !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
+
     }
 
     private void Update() => _stateMachine.Tick();

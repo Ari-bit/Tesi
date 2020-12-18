@@ -69,7 +69,7 @@ public class SpawnManager : MonoBehaviour
         //if (IsSpawnHidden() == true)
         {
             GameObject avatar = Instantiate(avatarPrefab, spawnpoints[spawnIndex].position, avatarPrefab.transform.rotation, transform.parent);
-            avatarManager.Init(avatar, spawnPos);
+            avatarManager.Init(avatar, spawnpoints);
             avatarCount++;
         }
     }
