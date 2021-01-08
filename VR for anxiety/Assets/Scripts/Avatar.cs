@@ -10,6 +10,7 @@ public class Avatar : MonoBehaviour
     public bool isToRemove = false;
     public bool hasInteracted = false;
     public string task;
+    public string prevTask;
     public int mood;    //scala da 1 a 4 dove 1 è un mood positivo e 4 è negativo
     public Transform[] spawnPos;
     private SpriteRenderer moodSprite;
@@ -26,10 +27,11 @@ public class Avatar : MonoBehaviour
 
         var navMeshAgent = GetComponent<NavMeshAgent>();
         var animator = GetComponent<Animator>();
+        var scheduler = GameObject.Find("Interactables").GetComponent<InteractablesManager>();
 
         _stateMachine = new StateMachine();
 
-        var findInteractable= new FindNearestInteractable(this);
+        var findInteractable= new FindNearestInteractable(this, scheduler);
         var selectTarget= new ChooseTarget(this, targetManager);
         var moveToSelected = new ReachTarget(this, navMeshAgent, animator);
         var interact = new Interact(this, animator);
@@ -40,7 +42,8 @@ public class Avatar : MonoBehaviour
         At(moveToSelected, selectTarget, TargetReached());
         At(selectTarget, findInteractable, () => isInteractive&& !hasInteracted);
         At(moveToSelected, interact, PlayAnimation());
-        At(interact, selectTarget, ()=>hasInteracted);
+        At(interact, selectTarget, Walk());
+        At(interact, findInteractable, NextTask());
 
         _stateMachine.AddAnyTransition(die, () => isToRemove);
         At(die, selectTarget, SpawnReached());
@@ -55,7 +58,8 @@ public class Avatar : MonoBehaviour
             Target != null && !navMeshAgent.pathPending &&
             navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && isInteractive && !hasInteracted;
         Func<bool> SpawnReached() => () => !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
-
+        Func<bool> NextTask() => () => hasInteracted && task != prevTask;
+        Func<bool> Walk() => () => hasInteracted && task == prevTask;
     }
 
     private void Update() => _stateMachine.Tick();

@@ -28,6 +28,11 @@ public class InteractablesManager : MonoBehaviour
         return tasks;
     }
 
+    public string GetNextTask()
+    {
+        return tasks[Random.Range(0, tasks.Count)];
+    }
+    /*
     public Transform SelectTarget( string taskName)
     {
         GameObject taskEmpty= GameObject.Find(this.name + "/" + taskName);
@@ -35,4 +40,5 @@ public class InteractablesManager : MonoBehaviour
         int index = Random.Range(0, count);
         return taskEmpty.transform.GetChild(index);
     }
+    */
 }

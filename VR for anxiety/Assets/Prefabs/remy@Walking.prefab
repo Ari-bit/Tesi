@@ -2805,7 +2805,7 @@ Transform:
   m_GameObject: {fileID: 9005790522288817460}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -15.072643, y: -5.473317e-16, z: 24.649628}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 5327389832929374815}
   - {fileID: 7093129020997987351}
@@ -2853,9 +2853,13 @@ MonoBehaviour:
   moodVisual: {fileID: 3100950087754560476}
   isInteractive: 0
   isToRemove: 0
+  hasInteracted: 0
   task: 
   mood: 0
-  spawnPos: {fileID: 0}
+  spawnPos:
+  - {fileID: 0}
+  targetManager: {fileID: 0}
+  Target: {fileID: 0}
 --- !u!195 &239326247261274812
 NavMeshAgent:
   m_ObjectHideFlags: 0

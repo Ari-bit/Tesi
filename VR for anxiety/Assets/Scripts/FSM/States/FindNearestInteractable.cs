@@ -9,9 +9,10 @@ public class FindNearestInteractable : IState
     private readonly InteractablesManager _imanager;
     private List<GameObject> tasksObj = new List<GameObject>();
 
-    public FindNearestInteractable(Avatar avatar)
+    public FindNearestInteractable(Avatar avatar, InteractablesManager scheduler)
     {
         _avatar = avatar;
+        _imanager = scheduler;
 
     }
 
@@ -35,6 +36,13 @@ public class FindNearestInteractable : IState
     }
     
 
-    public void OnEnter() { }
-    public void OnExit() { }
+    public void OnEnter()
+    {
+        
+    }
+    public void OnExit()
+    {
+        _avatar.prevTask = _avatar.task;
+        _avatar.task = _imanager.GetNextTask();
+    }
 }

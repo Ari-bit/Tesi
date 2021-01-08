@@ -41,8 +41,10 @@ public class AvatarManager : MonoBehaviour
 
         Avatar avatar = avatarObj.GetComponent<Avatar>();
         avatars.Add(avatar);
+        /*scheduler: i task sono gli envInteractable*/
         taskIndex = Random.Range(0, tasks.Count);
         avatar.task = tasks[taskIndex];
+
         avatar.spawnPos = spawnPos;
         avatar.targetManager = _tmanager;
         avatar.mood = Random.Range(1, 5);
