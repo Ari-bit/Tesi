@@ -15,8 +15,14 @@ public class Interact : IState
 
     public void Tick()
     {
-        EnvInteractable interactable = _avatar.Target.parent.GetComponent<EnvInteractable>();
-        interactable.Interact(_animator);
+        //if(_avatar.Target.parent.name!= "Target Points")
+        if (_avatar.Target.parent.GetComponent<EnvInteractable>()!=null)
+        {
+            EnvInteractable interactable = _avatar.Target.parent.GetComponent<EnvInteractable>();
+            Debug.Log(_avatar.Target.parent);
+            interactable.Interact(_animator);
+        }
+        
     }
 
     public void OnEnter()

@@ -32,12 +32,12 @@ public class Spawn
             layerMask = ~layerMask;
             if (Physics.Raycast(rayOrigin, dirToSpawn, dstToSpawn, layerMask))
             {
-                Debug.Log("ostacolo davanti a " + spawnPos.name + " , ostacolo: " + Physics.RaycastAll(cam.transform.position, dirToSpawn, dstToSpawn)[0].transform.name);
+                //Debug.Log("ostacolo davanti a " + spawnPos.name + " , ostacolo: " + Physics.RaycastAll(cam.transform.position, dirToSpawn, dstToSpawn)[0].transform.name);
                 return true;
             }
             else
             {
-                Debug.Log("sto guardando ");
+                //Debug.Log("sto guardando ");
                 return false;
             }
         }

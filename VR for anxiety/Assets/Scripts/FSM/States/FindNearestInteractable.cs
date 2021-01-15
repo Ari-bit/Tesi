@@ -25,6 +25,7 @@ public class FindNearestInteractable : IState
     {
         
         GameObject taskEmpty = GameObject.Find("Interactables" + "/" + _avatar.task);
+        Debug.Log(taskEmpty);
         int count = taskEmpty.transform.childCount;
         for (int i = 0; i < count; i++)
         {
@@ -42,7 +43,7 @@ public class FindNearestInteractable : IState
     }
     public void OnExit()
     {
-        _avatar.prevTask = _avatar.task;
-        _avatar.task = _imanager.GetNextTask();
+        //_avatar.prevTask = _avatar.task;
+        //_avatar.task = _imanager.GetNextTask();
     }
 }

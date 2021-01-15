@@ -65,13 +65,14 @@ public class SpawnManager : MonoBehaviour
         spawnIndex = Random.Range(0, spawnCount);
         spawnPos = spawnpoints[spawnIndex];
         Spawn spawn = new Spawn();
-        if (spawn.IsSpawnHidden(spawnPos, cam)==true)
+        if (spawn.IsSpawnHidden(spawnPos, cam) == true)
         //if (IsSpawnHidden() == true)
         {
             GameObject avatar = Instantiate(avatarPrefab, spawnpoints[spawnIndex].position, avatarPrefab.transform.rotation, transform.parent);
             avatarManager.Init(avatar, spawnpoints);
             avatarCount++;
         }
+        else spawnAvatars();
     }
 
     //public bool IsSpawnHidden()

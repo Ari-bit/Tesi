@@ -20,11 +20,14 @@ public class ReachTarget : IState
     private Vector3 _lastPosition = Vector3.zero;
     public float TimeStuck;
 
-    public ReachTarget(Avatar avatar, NavMeshAgent navMeshAgent, Animator animator)
+    private readonly InteractablesManager _imanager;
+
+    public ReachTarget(Avatar avatar, NavMeshAgent navMeshAgent, Animator animator, InteractablesManager scheduler)
     {
         _avatar = avatar;
         _navMeshAgent = navMeshAgent;
         _animator = animator;
+        _imanager = scheduler;
     }
 
 
@@ -59,6 +62,8 @@ public class ReachTarget : IState
     {
         //_navMeshAgent.enabled = false;
         //_animator.SetFloat(Speed, 0f);
+        _avatar.prevTask = _avatar.task;
+        _avatar.task = _imanager.GetNextTask();
     }
 
     //void Update()
