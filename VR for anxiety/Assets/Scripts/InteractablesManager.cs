@@ -5,7 +5,7 @@ using UnityEngine;
 public class InteractablesManager : MonoBehaviour
 {
     private List<string> tasks= new List<string>();
-    
+    private Dictionary<string, EnvInteractable>  envInteractables = new Dictionary<string, EnvInteractable>();
 
     // Start is called before the first frame update
     void Start()
@@ -13,7 +13,9 @@ public class InteractablesManager : MonoBehaviour
         int count = transform.childCount;
         for (int i = 0; i < count; i++)
         {
-            tasks.Add(transform.GetChild(i).name);
+            string name = transform.GetChild(i).name;
+            tasks.Add(name);
+            envInteractables.Add(name, transform.GetChild(i).GetComponent<EnvInteractable>());
         }
     }
 
@@ -28,10 +30,26 @@ public class InteractablesManager : MonoBehaviour
         return tasks;
     }
 
-    public string GetNextTask()
+    public string GetNextTask(Avatar avatar)
     {
         //questo è lo scheduler
-        return tasks[Random.Range(0, tasks.Count)];
+        //string nextTask= tasks[Random.Range(0, tasks.Count)];
+        //if (nextTask != "Walk" && envInteractables[nextTask].isRepeatible == false && avatar.NRFinishedTasks.Contains(nextTask))
+        //{
+        //    GetNextTask(avatar);
+        //}
+        List<string> copia = tasks;
+        //non posso scegliare i task non ripetibili già eseguiti 1 volta
+        for(int i = 0; i < avatar.NRFinishedTasks.Count; i++)
+        {
+            copia.Remove(avatar.NRFinishedTasks[i]);
+        }
+        string nextTask = copia[Random.Range(0, copia.Count)];
+        return nextTask;
+    }
+    public bool IsTaskRepeatable(string task)
+    {
+        return envInteractables[task].isRepeatible;
     }
     /*
     public Transform SelectTarget( string taskName)

@@ -19,7 +19,7 @@ public class Interact : IState
         if (_avatar.Target.parent.GetComponent<EnvInteractable>()!=null)
         {
             EnvInteractable interactable = _avatar.Target.parent.GetComponent<EnvInteractable>();
-            Debug.Log(_avatar.Target.parent);
+            //Debug.Log(_avatar.Target.parent);
             interactable.Interact(_animator);
         }
         

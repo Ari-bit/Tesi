@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class ThrowInteractable : EnvInteractable
 {
+
     // Start is called before the first frame update
     void Start()
     {
+        isRepeatible = true;
         count = transform.childCount;
         interactablesBusy = new Dictionary<GameObject, bool>();
         for (int i = 0; i < count; i++)

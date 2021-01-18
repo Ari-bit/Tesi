@@ -1,6 +1,8 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections.Generic;
+
 
 public class Avatar : MonoBehaviour
 {
@@ -20,6 +22,9 @@ public class Avatar : MonoBehaviour
 
     public Transform Target;
     //public EnvInteractable Target { get; set; }
+
+    public List<string> NRFinishedTasks = new List<string>();     //lista di task non ripetibli effettuati
+
     private void Start()
     {
         //targetManagerObj = GameObject.Find("Target Points");
@@ -58,7 +63,7 @@ public class Avatar : MonoBehaviour
 
         void At(IState from, IState to, Func<bool> condition) => _stateMachine.AddTransition(from, to, condition);
 
-        Func<bool> HasTarget() => () => Target != null && task == "Walk";
+        Func<bool> HasTarget() => () => Target != null && (task == "Walk" || task == prevTask);
         //Func<bool> TargetReached() => () => Target != null && !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && (!isInteractive);
         Func<bool> PlayAnimation() => () =>
             //Target != null &&

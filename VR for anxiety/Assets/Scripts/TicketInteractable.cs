@@ -7,6 +7,7 @@ public class TicketInteractable : EnvInteractable
     // Start is called before the first frame update
     void Start()
     {
+        isRepeatible = false;
         count = transform.childCount;
         interactablesBusy = new Dictionary<GameObject, bool>();
         for (int i = 0; i < count; i++)
