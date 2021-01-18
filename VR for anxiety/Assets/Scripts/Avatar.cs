@@ -6,9 +6,9 @@ public class Avatar : MonoBehaviour
 {
     [SerializeField] private GameObject moodVisual;
     private GameObject targetManagerObj;
-    public bool isInteractive =false;
+    //public bool isInteractive =false;
     public bool isToRemove = false;
-    public bool hasInteracted = false;
+    //public bool hasInteracted = false;
     public string task;
     public string prevTask;
     public int mood;    //scala da 1 a 4 dove 1 è un mood positivo e 4 è negativo
@@ -38,9 +38,15 @@ public class Avatar : MonoBehaviour
         var die = new Die(this, navMeshAgent, animator, spawnPos);
 
         At(selectTarget, moveToSelected, HasTarget());
-        At(findInteractable, moveToSelected, HasTarget());
-        At(moveToSelected, selectTarget, TargetReached());
-        At(selectTarget, findInteractable, () => isInteractive&& !hasInteracted);
+        At(selectTarget, findInteractable, () => task != "Walk");
+
+        At(findInteractable, moveToSelected,
+            //HasTarget()
+            ()=>true
+            );
+        //At(moveToSelected, selectTarget, TargetReached());
+        //At(selectTarget, findInteractable, () => isInteractive&& !hasInteracted);
+
         At(moveToSelected, interact, PlayAnimation());
         At(interact, selectTarget, Walk());
         At(interact, findInteractable, NextTask());
@@ -52,16 +58,23 @@ public class Avatar : MonoBehaviour
 
         void At(IState from, IState to, Func<bool> condition) => _stateMachine.AddTransition(from, to, condition);
 
-        Func<bool> HasTarget() => () => Target != null;
-        Func<bool> TargetReached() => () => Target != null && !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && (!isInteractive);
+        Func<bool> HasTarget() => () => Target != null && task == "Walk";
+        //Func<bool> TargetReached() => () => Target != null && !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && (!isInteractive);
         Func<bool> PlayAnimation() => () =>
-            Target != null && !navMeshAgent.pathPending &&
-            navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && isInteractive && task != "Base"
+            //Target != null &&
+            !navMeshAgent.pathPending &&
+            navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance
+            //&& isInteractive
+            //&& task != "Walk"
             //&& Target.parent.GetComponent<EnvInteractable>().interactablesBusy[Target.transform.gameObject] == false
             ;
         Func<bool> SpawnReached() => () => !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
-        Func<bool> NextTask() => () => hasInteracted && task != prevTask;
-        Func<bool> Walk() => () => hasInteracted && (task == prevTask || task=="Base");
+        Func<bool> NextTask() => () => 
+            //hasInteracted && 
+            task != prevTask;
+        Func<bool> Walk() => () => 
+            //hasInteracted && 
+            (task == prevTask || task=="Walk");
     }
 
     private void Update() => _stateMachine.Tick();

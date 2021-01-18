@@ -21,7 +21,7 @@ public class AvatarManager : MonoBehaviour
         _tmanager = tpoints.GetComponent<TargetManager>();
         _imanager = interactables.GetComponent<InteractablesManager>();
         tasks = _imanager.GetTasks();
-        tasks.Add("Base");
+        tasks.Add("Walk");
     }
 
     // Update is called once per frame
@@ -42,6 +42,7 @@ public class AvatarManager : MonoBehaviour
         Avatar avatar = avatarObj.GetComponent<Avatar>();
         avatars.Add(avatar);
         /*scheduler: i task sono gli envInteractable*/
+        //questo è il primo task assegnato
         taskIndex = Random.Range(0, tasks.Count);
         avatar.task = tasks[taskIndex];
 
@@ -50,11 +51,11 @@ public class AvatarManager : MonoBehaviour
         avatar.mood = Random.Range(1, 5);
         avatar.ShowMood();
 
-        if (avatar.task!= "Base")
-        {
-            avatar.isInteractive = true;
-            //avatar.Target = _imanager.SelectTarget(avatar.task);
-        }
+        //if (avatar.task!= "Walk")
+        //{
+        //    avatar.isInteractive = true;
+        //    //avatar.Target = _imanager.SelectTarget(avatar.task);
+        //}
     }
 
     public void RemoveAvatar()

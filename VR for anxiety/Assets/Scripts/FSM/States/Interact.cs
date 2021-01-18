@@ -27,7 +27,7 @@ public class Interact : IState
 
     public void OnEnter()
     {
-        _avatar.hasInteracted = true;
+        //_avatar.hasInteracted = true;
     }
 
     public void OnExit()

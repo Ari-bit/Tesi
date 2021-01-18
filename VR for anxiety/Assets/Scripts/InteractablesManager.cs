@@ -30,6 +30,7 @@ public class InteractablesManager : MonoBehaviour
 
     public string GetNextTask()
     {
+        //questo è lo scheduler
         return tasks[Random.Range(0, tasks.Count)];
     }
     /*

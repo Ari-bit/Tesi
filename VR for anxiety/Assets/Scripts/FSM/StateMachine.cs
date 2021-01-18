@@ -30,7 +30,7 @@ public class StateMachine
       
       _currentState?.OnExit();
       _currentState = state;
-      Debug.Log(state);
+      //Debug.Log(state);
       _transitions.TryGetValue(_currentState.GetType(), out _currentTransitions);
       if (_currentTransitions == null)
          _currentTransitions = EmptyTransitions;

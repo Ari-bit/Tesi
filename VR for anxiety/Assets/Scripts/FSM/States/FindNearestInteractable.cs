@@ -7,7 +7,7 @@ public class FindNearestInteractable : IState
 {
     private readonly Avatar _avatar;
     private readonly InteractablesManager _imanager;
-    private List<GameObject> tasksObj = new List<GameObject>();
+    //private List<GameObject> tasksObj = new List<GameObject>();
 
     public FindNearestInteractable(Avatar avatar, InteractablesManager scheduler)
     {
@@ -23,9 +23,9 @@ public class FindNearestInteractable : IState
 
     private Transform ChooseTheNearestInteractable()
     {
-        
+        List<GameObject> tasksObj = new List<GameObject>();
         GameObject taskEmpty = GameObject.Find("Interactables" + "/" + _avatar.task);
-        Debug.Log(taskEmpty);
+        //Debug.Log(taskEmpty);
         int count = taskEmpty.transform.childCount;
         for (int i = 0; i < count; i++)
         {
