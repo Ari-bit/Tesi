@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//generica classe task
+
 public class EnvInteractable : MonoBehaviour
 {
     public Dictionary<GameObject, bool> interactablesBusy;    //per tenere traccia degli oggetti interactable se sono occupati o meno

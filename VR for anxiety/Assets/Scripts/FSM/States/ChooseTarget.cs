@@ -19,6 +19,7 @@ public class ChooseTarget : IState
     public void Tick()
     {
         _avatar.Target = _targetManager.SetTarget();
+        _avatar.targetObject = _avatar.Target.gameObject;
     }
 
 }

@@ -8,12 +8,17 @@ public class TicketInteractable : EnvInteractable
     void Start()
     {
         isRepeatible = false;
-        count = transform.childCount;
         interactablesBusy = new Dictionary<GameObject, bool>();
+        count = transform.childCount;
         for (int i = 0; i < count; i++)
         {
             interactablesBusy.Add(transform.GetChild(i).gameObject, false);
         }
+        //count = transform.GetChild(0).transform.childCount;
+        //for (int i = 0; i < count; i++)
+        //{
+        //    interactablesBusy.Add(transform.GetChild(0).transform.GetChild(i).gameObject, false);
+        //}
     }
 
     // Update is called once per frame

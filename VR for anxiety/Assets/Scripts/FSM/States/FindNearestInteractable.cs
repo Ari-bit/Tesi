@@ -8,6 +8,7 @@ public class FindNearestInteractable : IState
     private readonly Avatar _avatar;
     private readonly InteractablesManager _imanager;
     //private List<GameObject> tasksObj = new List<GameObject>();
+    EnvInteractable interactable;
 
     public FindNearestInteractable(Avatar avatar, InteractablesManager scheduler)
     {
@@ -23,17 +24,40 @@ public class FindNearestInteractable : IState
 
     private Transform ChooseTheNearestInteractable()
     {
-        List<GameObject> tasksObj = new List<GameObject>();
+        List<GameObject> tasksObjs = new List<GameObject>();
         GameObject taskEmpty = GameObject.Find("Interactables" + "/" + _avatar.task);
         //Debug.Log(taskEmpty);
         int count = taskEmpty.transform.childCount;
         for (int i = 0; i < count; i++)
         {
-            tasksObj.Add(taskEmpty.transform.GetChild(i).gameObject);
+            tasksObjs.Add(taskEmpty.transform.GetChild(i).gameObject);
         }
-        return tasksObj
+
+        GameObject taskObj = tasksObjs
             .OrderBy(t => Vector3.Distance(_avatar.transform.position, t.transform.position))
-            .FirstOrDefault().transform;
+            .FirstOrDefault();
+
+        _avatar.targetObject = taskObj;
+        //if (taskObj.transform.childCount != 0)
+        //{
+        //    EnvInteractable interactable = taskObj.transform.parent.GetComponent<EnvInteractable>();
+        //    taskObj = interactable.interactablesBusy.Keys.FirstOrDefault(t => interactable.interactablesBusy[t] == false);
+        //    interactable.interactablesBusy[taskObj] = true;
+        //}
+        interactable = taskObj.transform.parent.GetComponent<EnvInteractable>();
+        if (interactable.interactablesBusy[taskObj] == true)
+        {
+            GameObject row = new GameObject("posto");
+            row.transform.parent = taskObj.transform;
+            row.transform.rotation = taskObj.transform.rotation;
+            row.transform.position = taskObj.transform.position + 3 * Vector3.right; //verso la x
+            taskObj = row;
+        }
+            
+        //return tasksObjs
+        //    .OrderBy(t => Vector3.Distance(_avatar.transform.position, t.transform.position))
+        //    .FirstOrDefault().transform;
+        return taskObj.transform;
     }
     
 

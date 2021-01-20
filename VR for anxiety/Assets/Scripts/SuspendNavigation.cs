@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class SuspendNavigation : StateMachineBehaviour
 {
     private NavMeshAgent _navMeshAgent;
-    private GameObject interactable;
+    private EnvInteractable interactable;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -16,6 +16,10 @@ public class SuspendNavigation : StateMachineBehaviour
         //segno l'interactable su cui viene fatta l'animazione come occupato
         //interactable= animator.GetComponentInParent<ReachTarget>()._currentTarget.transform.gameObject;
         //interactable.GetComponentInParent<EnvInteractable>().interactablesBusy[interactable] = true;
+
+        //interactable = animator.GetComponentInParent<Avatar>().Target.gameObject;
+        //interactable.GetComponentInParent<EnvInteractable>().interactablesBusy[interactable] = true;
+        animator.GetComponentInParent<Avatar>().fineInteract = false;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -31,6 +35,16 @@ public class SuspendNavigation : StateMachineBehaviour
         //interactable = animator.GetComponentInParent<ReachTarget>()._currentTarget.transform.gameObject;
         //interactable.transform.parent.GetComponent<EnvInteractable>().objects[interactable] = false;
         //interactable.GetComponentInParent<EnvInteractable>().interactablesBusy[interactable] = false;
+
+        //interactable = animator.GetComponentInParent<Avatar>().Target.parent.gameObject;
+        //interactable.GetComponentInParent<EnvInteractable>().interactablesBusy[interactable] = false;
+
+        //Avatar avatar = animator.GetComponentInParent<Avatar>();
+        //interactable = avatar.targetObject.GetComponentInParent<EnvInteractable>();
+        //interactable.interactablesBusy[avatar.targetObject] = false;
+
+        animator.GetComponentInParent<Avatar>().fineInteract = true;
+
     }
 
     public NavMeshAgent GetNavMeshAgent(Animator animator)
