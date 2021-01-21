@@ -25,6 +25,6 @@ public class ShopInteractable : EnvInteractable
 
     public override void Interact(Animator _animator)
     {
-        _animator.SetTrigger("Throw");
+        _animator.SetTrigger("PickUp");
     }
 }

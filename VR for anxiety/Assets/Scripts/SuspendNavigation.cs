@@ -12,6 +12,7 @@ public class SuspendNavigation : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         GetNavMeshAgent(animator).isStopped = true;
+        GetNavMeshAgent(animator).enabled = false;
 
         //segno l'interactable su cui viene fatta l'animazione come occupato
         //interactable= animator.GetComponentInParent<ReachTarget>()._currentTarget.transform.gameObject;
@@ -31,6 +32,7 @@ public class SuspendNavigation : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        GetNavMeshAgent(animator).enabled = true;
         GetNavMeshAgent(animator).isStopped = false;
         //interactable = animator.GetComponentInParent<ReachTarget>()._currentTarget.transform.gameObject;
         //interactable.transform.parent.GetComponent<EnvInteractable>().objects[interactable] = false;

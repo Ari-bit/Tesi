@@ -41,7 +41,7 @@ public class ReachTarget : IState
 
     public void OnEnter()
     {
-        _navMeshAgent.stoppingDistance = 0.5f;
+        _navMeshAgent.stoppingDistance = 0.6f;
         _navMeshAgent.speed = _animator.GetFloat("Forward");
 
         cam = Camera.main;
@@ -62,12 +62,13 @@ public class ReachTarget : IState
     {
         //_navMeshAgent.enabled = false;
         //_animator.SetFloat(Speed, 0f);
-        _avatar.prevTask = _avatar.task;
-        if (_avatar.prevTask != "Walk"&&_imanager.IsTaskRepeatable(_avatar.prevTask) == false)
-        {
-            _avatar.NRFinishedTasks.Add(_avatar.prevTask);
-        }
-        _avatar.task = _imanager.GetNextTask(_avatar);
+
+        //_avatar.prevTask = _avatar.task;
+        //if (_avatar.prevTask != "Walk"&&_imanager.IsTaskRepeatable(_avatar.prevTask) == false)
+        //{
+        //    _avatar.NRFinishedTasks.Add(_avatar.prevTask);
+        //}
+        //_avatar.task = _imanager.GetNextTask(_avatar);
     }
 
     //void Update()

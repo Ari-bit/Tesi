@@ -36,6 +36,7 @@ public class FindNearestInteractable : IState
         GameObject taskObj = tasksObjs
             .OrderBy(t => Vector3.Distance(_avatar.transform.position, t.transform.position))
             .FirstOrDefault();
+        
 
         _avatar.targetObject = taskObj;
         //if (taskObj.transform.childCount != 0)
@@ -45,20 +46,24 @@ public class FindNearestInteractable : IState
         //    interactable.interactablesBusy[taskObj] = true;
         //}
         interactable = taskObj.transform.parent.GetComponent<EnvInteractable>();
-        if (interactable.interactablesBusy[taskObj] == true)
+        //if (interactable.interactablesBusy[taskObj] == true)
+        //{
+        //    GameObject row = new GameObject("posto");
+        //    row.transform.parent = taskObj.transform;
+        //    row.transform.rotation = taskObj.transform.rotation;
+        //    row.transform.position = taskObj.transform.position + 3 * Vector3.right; //verso la x
+        //    taskObj = row;
+        //}
+        if (taskObj.transform.childCount != 0)
         {
-            GameObject row = new GameObject("posto");
-            row.transform.parent = taskObj.transform;
-            row.transform.rotation = taskObj.transform.rotation;
-            row.transform.position = taskObj.transform.position + 3 * Vector3.right; //verso la x
-            taskObj = row;
+            taskObj = taskObj.transform.GetChild(0).gameObject;
         }
-            
+
         //return tasksObjs
         //    .OrderBy(t => Vector3.Distance(_avatar.transform.position, t.transform.position))
         //    .FirstOrDefault().transform;
         return taskObj.transform;
-    }
+}
     
 
     public void OnEnter()

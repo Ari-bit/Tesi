@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MoveForward : IState
 {
     private readonly Avatar _avatar;
+
+
 
     public MoveForward(Avatar avatar)
     {

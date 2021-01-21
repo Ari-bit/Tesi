@@ -42,9 +42,10 @@ public class Avatar : MonoBehaviour
         var findInteractable= new FindNearestInteractable(this, scheduler);
         var selectTarget= new ChooseTarget(this, targetManager);
         var moveToSelected = new ReachTarget(this, navMeshAgent, animator, scheduler);
-        var interact = new Interact(this, animator);
+        var interact = new Interact(this, animator, scheduler);
         var die = new Die(this, navMeshAgent, animator, spawnPos);
         var moveForward= new MoveForward(this);
+        var wait= new Wait(animator, navMeshAgent);
 
         At(selectTarget, moveToSelected, HasTarget());
         At(selectTarget, findInteractable, () => task != "Walk");
@@ -58,7 +59,9 @@ public class Avatar : MonoBehaviour
         At(interact, selectTarget, Walk());
         At(interact, findInteractable, NextTask());
 
-        At(moveToSelected, moveForward, InteractableFreed());
+        At(moveToSelected, moveForward, InteractableIsFree());
+        At(moveToSelected, wait, InteractableBusy());
+        At(wait, moveForward, InteractableFreed());
         At(moveForward, moveToSelected, ()=>true);
 
         _stateMachine.AddAnyTransition(die, () => isToRemove);
@@ -77,8 +80,9 @@ public class Avatar : MonoBehaviour
             //&& isInteractive
             //&& task != "Walk"
             //&& Target.parent.GetComponent<EnvInteractable>().interactablesBusy[Target.transform.gameObject] == false
-            && Target.name != "posto"
-            ;
+            //&& Target.name != "posto"
+            && Target == targetObject.transform;
+        ;
         Func<bool> SpawnReached() => () => !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
         Func<bool> NextTask() => () => 
             //hasInteracted && 
@@ -87,12 +91,24 @@ public class Avatar : MonoBehaviour
             //hasInteracted && 
             (task == prevTask || task=="Walk") && (fineInteract || prevTask == "Walk");
 
-        Func<bool> InteractableFreed() => () =>
+        Func<bool> InteractableIsFree() => () =>
             !navMeshAgent.pathPending &&
             navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance
-            && Target.name == "posto"
-            && targetObject.GetComponentInParent<EnvInteractable>().interactablesBusy[targetObject]==false
+            //&& Target.name == "posto"
+            &&targetObject.GetComponentInParent<EnvInteractable>().interactablesBusy[targetObject]==false
             ;
+        Func<bool> InteractableFreed() => () =>
+            //!navMeshAgent.pathPending &&
+            //navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance
+            //&& Target.name == "posto"
+            targetObject.GetComponentInParent<EnvInteractable>().interactablesBusy[targetObject] == false
+        ;
+        Func<bool> InteractableBusy() => () =>
+            !navMeshAgent.pathPending &&
+            navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance
+            //&& Target.name == "posto"
+            && targetObject.GetComponentInParent<EnvInteractable>().interactablesBusy[targetObject] == true
+        ;
     }
 
     private void Update() => _stateMachine.Tick();

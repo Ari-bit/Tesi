@@ -7,11 +7,15 @@ public class Interact : IState
     private readonly Avatar _avatar;
     private readonly Animator _animator;
     private EnvInteractable i;
+    private readonly InteractablesManager _imanager;
 
-    public Interact(Avatar avatar, Animator animator)
+
+    public Interact(Avatar avatar, Animator animator, InteractablesManager scheduler)
     {
         _avatar = avatar;
         _animator = animator;
+        _imanager = scheduler;
+
     }
 
     public void Tick()
@@ -28,6 +32,12 @@ public class Interact : IState
 
     public void OnEnter()
     {
+        _avatar.prevTask = _avatar.task;
+        if (_avatar.prevTask != "Walk" && _imanager.IsTaskRepeatable(_avatar.prevTask) == false)
+        {
+            _avatar.NRFinishedTasks.Add(_avatar.prevTask);
+        }
+        _avatar.task = _imanager.GetNextTask(_avatar);
         //_avatar.hasInteracted = true;
         if (_avatar.targetObject.transform.parent.GetComponent<EnvInteractable>() != null)
         {
