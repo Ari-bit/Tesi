@@ -116,6 +116,7 @@ public class Avatar : MonoBehaviour
     public void ShowMood()
     {
         moodSprite = moodVisual.GetComponent<SpriteRenderer>();
+        Animator _animator = GetComponent<Animator>();
         switch (mood)
         {
             case 1:
@@ -126,10 +127,12 @@ public class Avatar : MonoBehaviour
                 break;
             case 3:
                 moodSprite.color = Color.yellow;
+                _animator.SetFloat("Forward", 0.5f);
                 break;
             case 4:
                 moodSprite.color = Color.red;
-                this.GetComponentInParent<Animator>().SetFloat("Forward", 0.6f );
+                //this.GetComponentInParent<Animator>().SetFloat("Forward", 0.6f );
+                _animator.SetFloat("Forward", 0.6f);
                 break;
             default:
                 break;
