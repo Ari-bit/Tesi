@@ -61,8 +61,11 @@ public class QueueManager : MonoBehaviour
                         break;
                     }
                 }
-                avatar.Target = transform.parent.GetChild(siblingIndex);
-                //avatar.Target = transform.parent.GetChild(siblingIndex).GetChild(0);
+                //avatar.Target = transform.parent.GetChild(siblingIndex);
+                //avatar.targetObject = avatar.Target.gameObject;
+                avatar.targetObject = transform.parent.GetChild(siblingIndex).gameObject;
+
+                avatar.Target = transform.parent.GetChild(siblingIndex).GetChild(0);
             }
             else
             {
@@ -71,8 +74,8 @@ public class QueueManager : MonoBehaviour
                 queued = _avatarQueue.Count;
                 avatar.Target = _queuePoints[queued - 1];
                 Debug.Log(avatar.Target.name);
-                Selection.activeGameObject = avatar.gameObject;
-                Debug.Break();
+                //Selection.activeGameObject = avatar.gameObject;
+                //Debug.Break();
 
                 if (queued > 1)
                 {
