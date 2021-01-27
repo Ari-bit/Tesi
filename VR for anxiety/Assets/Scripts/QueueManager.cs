@@ -49,8 +49,8 @@ public class QueueManager : MonoBehaviour
             if (queued == _maxQueue)
             {
                 Debug.Log("MAXQUEUE");
-                Selection.activeGameObject = avatar.gameObject;
-                Debug.Break();
+                //Selection.activeGameObject = avatar.gameObject;
+                //Debug.Break();
                 int index = transform.GetSiblingIndex();
                 int siblingIndex=0;
                 for(int i=0; i<transform.parent.childCount; i++)
@@ -71,6 +71,7 @@ public class QueueManager : MonoBehaviour
             {
                 //Debug.Log("sta andando a ticket");  
                 _avatarQueue.Enqueue(avatar);
+                //_avatr.InteractionCompleted += OnAvatarInteractionCompleted()
                 queued = _avatarQueue.Count;
                 avatar.Target = _queuePoints[queued - 1];
                 Debug.Log(avatar.Target.name);
@@ -85,8 +86,9 @@ public class QueueManager : MonoBehaviour
             
         }
     }
-    private void OnTriggerExit(Collider other)      //temporaneo sistema di dequeue(da cambiare)
+    private void OnTriggerExit(Collider other)      //temporaneo sistema di dequeue(da cambiare) //Diventa --> OnAvatarInteractionCompleted()
     {
+        //(avatar che ha scatenato l'evento).InteractionCompleted -= OnAvatarInteractionCompleted()
         Avatar avatar = other.GetComponentInParent<Avatar>();
         avatar.isQueuing = false;
         if (_avatarQueue.Contains(avatar))

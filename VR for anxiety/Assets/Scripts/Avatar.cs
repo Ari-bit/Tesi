@@ -83,7 +83,8 @@ public class Avatar : MonoBehaviour
             //&& task != "Walk"
             //&& Target.parent.GetComponent<EnvInteractable>().interactablesBusy[Target.transform.gameObject] == false
             //&& Target.name != "posto"
-            && Target == targetObject.transform;
+            && Target == targetObject.transform
+            || (task == "Walk" || task == prevTask)
         ;
         Func<bool> SpawnReached() => () => !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
         Func<bool> NextTask() => () => 
