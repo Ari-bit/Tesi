@@ -28,6 +28,8 @@ public class Avatar : MonoBehaviour
     public GameObject targetObject;
     public bool fineInteract = false;
 
+    public bool isQueuing = false;
+
     private void Start()
     {
         //targetManagerObj = GameObject.Find("Target Points");
@@ -95,19 +97,22 @@ public class Avatar : MonoBehaviour
             !navMeshAgent.pathPending &&
             navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance
             //&& Target.name == "posto"
-            &&targetObject.GetComponentInParent<EnvInteractable>().interactablesBusy[targetObject]==false
+            && targetObject.GetComponentInParent<EnvInteractable>().interactablesBusy[targetObject] == false
+            && isQueuing == false
             ;
         Func<bool> InteractableFreed() => () =>
             //!navMeshAgent.pathPending &&
             //navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance
             //&& Target.name == "posto"
             targetObject.GetComponentInParent<EnvInteractable>().interactablesBusy[targetObject] == false
+            //&& isQueuing == false
         ;
         Func<bool> InteractableBusy() => () =>
             !navMeshAgent.pathPending &&
             navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance
             //&& Target.name == "posto"
-            && targetObject.GetComponentInParent<EnvInteractable>().interactablesBusy[targetObject] == true
+            && (targetObject.GetComponentInParent<EnvInteractable>().interactablesBusy[targetObject] == true
+            || isQueuing==true)
         ;
     }
 

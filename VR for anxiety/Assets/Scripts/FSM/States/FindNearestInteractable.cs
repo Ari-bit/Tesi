@@ -56,7 +56,7 @@ public class FindNearestInteractable : IState
         //}
         if (taskObj.transform.childCount != 0)
         {
-            taskObj = taskObj.transform.GetChild(0).gameObject;
+            taskObj = taskObj.transform.GetChild(0).gameObject;     //punto di controllo
         }
 
         //return tasksObjs

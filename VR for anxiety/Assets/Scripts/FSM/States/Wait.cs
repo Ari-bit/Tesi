@@ -18,11 +18,13 @@ public class Wait : IState
         //_navMeshAgent.isStopped = true;
         //_navMeshAgent.enabled = false;
         _animator.SetTrigger("Idle");
-        //Debug.Break();
+        //Debug.Log("Start wait");
     }
 
     public void OnExit()
     {
+        //Debug.Log("End wait");
+
         //_navMeshAgent.enabled = true;
         //_navMeshAgent.isStopped = false;
         //_navMeshAgent.speed = _animator.GetFloat("Forward");

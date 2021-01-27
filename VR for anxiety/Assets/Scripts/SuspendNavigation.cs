@@ -12,7 +12,7 @@ public class SuspendNavigation : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         GetNavMeshAgent(animator).isStopped = true;
-        GetNavMeshAgent(animator).enabled = false;
+        //GetNavMeshAgent(animator).enabled = false;    //per evitare che pattinino, ma da problemi col rigidbody
 
         //segno l'interactable su cui viene fatta l'animazione come occupato
         //interactable= animator.GetComponentInParent<ReachTarget>()._currentTarget.transform.gameObject;

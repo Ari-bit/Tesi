@@ -37,6 +37,10 @@ public class ReachTarget : IState
             TimeStuck += Time.deltaTime;
 
         _lastPosition = _avatar.transform.position;
+
+        _target = _avatar.Target;
+        _navMeshAgent.SetDestination(_target.position);
+
     }
 
     public void OnEnter()
@@ -48,13 +52,15 @@ public class ReachTarget : IState
 
         //if (_target == null)
         //{
-            _target = _avatar.Target;
+            /*_target = _avatar.Target;*/
             //_target = _targetManager.SetTarget();
         //}
         TimeStuck = 0f;
         _navMeshAgent.enabled = true;
         //_navMeshAgent.SetDestination(_avatar.Target.transform.position);
-        _navMeshAgent.SetDestination(_target.position);
+
+        /*_navMeshAgent.SetDestination(_target.position);*/
+
         //_animator.SetFloat(Speed, 0.4f);
     }
 

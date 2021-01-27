@@ -1,0 +1,100 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEditor;
+
+public class QueueManager : MonoBehaviour
+{
+    //private List<Transform> _queuePoints;
+    private Transform[] _queuePoints;
+
+    public Queue<Avatar> _avatarQueue;
+    private int _maxQueue;
+    private int queued = 0;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        //_queuePoints = new List<Transform>();
+        _maxQueue = transform.parent.GetComponent<EnvInteractable>().maxQueue;
+        _queuePoints = new Transform[_maxQueue];
+        _avatarQueue = new Queue<Avatar>();
+
+        _queuePoints[0] = transform;
+        for(int i=1; i<_maxQueue; i++)
+        {
+            //da creare da codice poi
+            //_queuePoints.Add(transform.GetChild(i+1));
+            _queuePoints[i]=transform.GetChild(i);
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //if (queued != 0)
+        //{
+        //    transform.parent.GetComponent<EnvInteractable>().interactablesBusy[this.gameObject] = true;
+        //}
+        //queued = _avatarQueue.Count;
+        //vedere se un avatar sta arrivando (controllare avatar.targetObj?)
+        //assegbarlo ad un punto della fila (cambiargli il target, inserirlo in queue)
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Avatar avatar= other.GetComponentInParent<Avatar>();
+        if(avatar.targetObject== transform.gameObject)
+        {
+            if (queued == _maxQueue)
+            {
+                Debug.Log("MAXQUEUE");
+                Selection.activeGameObject = avatar.gameObject;
+                Debug.Break();
+                int index = transform.GetSiblingIndex();
+                int siblingIndex=0;
+                for(int i=0; i<transform.parent.childCount; i++)
+                {
+                    if (i != index)
+                    {
+                        siblingIndex = i;
+                        break;
+                    }
+                }
+                avatar.Target = transform.parent.GetChild(siblingIndex);
+                //avatar.Target = transform.parent.GetChild(siblingIndex).GetChild(0);
+            }
+            else
+            {
+                //Debug.Log("sta andando a ticket");  
+                _avatarQueue.Enqueue(avatar);
+                queued = _avatarQueue.Count;
+                avatar.Target = _queuePoints[queued - 1];
+                Debug.Log(avatar.Target.name);
+                Selection.activeGameObject = avatar.gameObject;
+                Debug.Break();
+
+                if (queued > 1)
+                {
+                    avatar.isQueuing = true;
+                }
+            }
+            
+        }
+    }
+    private void OnTriggerExit(Collider other)      //temporaneo sistema di dequeue(da cambiare)
+    {
+        Avatar avatar = other.GetComponentInParent<Avatar>();
+        avatar.isQueuing = false;
+        if (_avatarQueue.Contains(avatar))
+        {
+            _avatarQueue.Dequeue();
+            queued = _avatarQueue.Count;
+
+            for (int i=0; i<queued; i++)
+            {
+                _avatarQueue.ToArray()[i].Target = _queuePoints[i];
+            }
+        }
+    }
+}
