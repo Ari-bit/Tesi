@@ -55,6 +55,10 @@ public class Interact : IState
         //{
         //    _avatar.Target.parent.GetComponent<EnvInteractable>().interactablesBusy[_avatar.targetObject] = false;
         //}
+        if (_avatar.InteractionCompleted != null)
+        {
+            _avatar.InteractionCompleted(_avatar);
+        }
     }
 
 

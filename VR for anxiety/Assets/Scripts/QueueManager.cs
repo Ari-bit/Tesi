@@ -63,7 +63,7 @@ public class QueueManager : MonoBehaviour
                 }
                 //avatar.Target = transform.parent.GetChild(siblingIndex);
                 //avatar.targetObject = avatar.Target.gameObject;
-                avatar.targetObject = transform.parent.GetChild(siblingIndex).gameObject;
+                avatar.targetObject = transform.parent.GetChild(siblingIndex).gameObject;       //non basarsi sulla struttura gerarchica (da cambiare)
 
                 avatar.Target = transform.parent.GetChild(siblingIndex).GetChild(0);
             }
@@ -71,7 +71,10 @@ public class QueueManager : MonoBehaviour
             {
                 //Debug.Log("sta andando a ticket");  
                 _avatarQueue.Enqueue(avatar);
-                //_avatr.InteractionCompleted += OnAvatarInteractionCompleted()
+
+                avatar.InteractionCompleted += OnAvatarInteractionCompleted;    //il manager si iscrive all'evento per registrare quando l'avatar finisce l'interazione
+                                                                                // per poi toglierlo dalla fila (piuttosto che aspettare che esca dalla zona di trigger
+
                 queued = _avatarQueue.Count;
                 avatar.Target = _queuePoints[queued - 1];
                 Debug.Log(avatar.Target.name);
@@ -86,17 +89,18 @@ public class QueueManager : MonoBehaviour
             
         }
     }
-    private void OnTriggerExit(Collider other)      //temporaneo sistema di dequeue(da cambiare) //Diventa --> OnAvatarInteractionCompleted()
+
+    private void OnAvatarInteractionCompleted(Avatar avatar) 
     {
-        //(avatar che ha scatenato l'evento).InteractionCompleted -= OnAvatarInteractionCompleted()
-        Avatar avatar = other.GetComponentInParent<Avatar>();
+        avatar.InteractionCompleted -= OnAvatarInteractionCompleted;      //il manager smette di "ascoltare" l'avatar che ha scatenato l'evento
+        Debug.Log("interaction completed");
         avatar.isQueuing = false;
         if (_avatarQueue.Contains(avatar))
         {
             _avatarQueue.Dequeue();
             queued = _avatarQueue.Count;
 
-            for (int i=0; i<queued; i++)
+            for (int i = 0; i < queued; i++)
             {
                 _avatarQueue.ToArray()[i].Target = _queuePoints[i];
             }

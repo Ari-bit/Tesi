@@ -30,6 +30,9 @@ public class Avatar : MonoBehaviour
 
     public bool isQueuing = false;
 
+    public Action<Avatar> InteractionCompleted;     //evento che indica quando un avatar ha finito l'interazione
+                                                    //usato per il dequque degli avatar in fila
+
     private void Start()
     {
         //targetManagerObj = GameObject.Find("Target Points");

@@ -13,9 +13,6 @@ public class ReachTarget : IState
     private Animator _animator;
     private Avatar _avatar;
 
-    private bool hasInteracted = false;
-    private Camera cam;
-
     private static readonly int Speed = Animator.StringToHash("Forward");
     private Vector3 _lastPosition = Vector3.zero;
     public float TimeStuck;
@@ -47,8 +44,6 @@ public class ReachTarget : IState
     {
         _navMeshAgent.stoppingDistance = 0.6f;
         _navMeshAgent.speed = _animator.GetFloat("Forward");
-
-        cam = Camera.main;
 
         //if (_target == null)
         //{
