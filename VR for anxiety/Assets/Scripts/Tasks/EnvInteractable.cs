@@ -11,6 +11,7 @@ public class EnvInteractable : MonoBehaviour
     public int count;
     public bool isRepeatible;
     public int maxQueue;
+    public bool[] busy; //for debugging
 
     // Update is called once per frame
     void Update()

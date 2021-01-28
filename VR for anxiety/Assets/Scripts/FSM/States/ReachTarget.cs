@@ -43,6 +43,8 @@ public class ReachTarget : IState
     public void OnEnter()
     {
         _navMeshAgent.stoppingDistance = 0.6f;
+             //prova, da cambiare con la vel di ogni avatar
+        _avatar.ShowMood();
         _navMeshAgent.speed = _animator.GetFloat("Forward");
 
         //if (_target == null)

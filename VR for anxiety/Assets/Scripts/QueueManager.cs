@@ -71,13 +71,13 @@ public class QueueManager : MonoBehaviour
             {
                 //Debug.Log("sta andando a ticket");  
                 _avatarQueue.Enqueue(avatar);
-
+                transform.GetComponentInParent<EnvInteractable>().interactablesBusy[this.gameObject] = true;    //segno come occupato prima di arrivarci
                 avatar.InteractionCompleted += OnAvatarInteractionCompleted;    //il manager si iscrive all'evento per registrare quando l'avatar finisce l'interazione
                                                                                 // per poi toglierlo dalla fila (piuttosto che aspettare che esca dalla zona di trigger
 
                 queued = _avatarQueue.Count;
                 avatar.Target = _queuePoints[queued - 1];
-                Debug.Log(avatar.Target.name);
+                //Debug.Log(avatar.Target.name);
                 //Selection.activeGameObject = avatar.gameObject;
                 //Debug.Break();
 
@@ -93,7 +93,6 @@ public class QueueManager : MonoBehaviour
     private void OnAvatarInteractionCompleted(Avatar avatar) 
     {
         avatar.InteractionCompleted -= OnAvatarInteractionCompleted;      //il manager smette di "ascoltare" l'avatar che ha scatenato l'evento
-        Debug.Log("interaction completed");
         avatar.isQueuing = false;
         if (_avatarQueue.Contains(avatar))
         {

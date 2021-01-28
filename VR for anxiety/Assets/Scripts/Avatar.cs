@@ -66,8 +66,10 @@ public class Avatar : MonoBehaviour
 
         At(moveToSelected, moveForward, InteractableIsFree());
         At(moveToSelected, wait, InteractableBusy());
-        At(wait, moveForward, InteractableFreed());
+        //At(wait, moveForward, InteractableFreed());
         At(moveForward, moveToSelected, ()=>true);
+        At(wait, moveToSelected, InteractableFreed());
+
 
         _stateMachine.AddAnyTransition(die, () => isToRemove);
         At(die, selectTarget, SpawnReached());
@@ -86,8 +88,8 @@ public class Avatar : MonoBehaviour
             //&& task != "Walk"
             //&& Target.parent.GetComponent<EnvInteractable>().interactablesBusy[Target.transform.gameObject] == false
             //&& Target.name != "posto"
-            && Target == targetObject.transform
-            || (task == "Walk" || task == prevTask)
+            && (Target == targetObject.transform
+            || (task == "Walk" || task == prevTask))
         ;
         Func<bool> SpawnReached() => () => !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
         Func<bool> NextTask() => () => 
@@ -130,9 +132,11 @@ public class Avatar : MonoBehaviour
         {
             case 1:
                 moodSprite.color=Color.green;
+                _animator.SetFloat("Forward", 0.4f);
                 break;
             case 2:
                 moodSprite.color = Color.white;
+                _animator.SetFloat("Forward", 0.4f);
                 break;
             case 3:
                 moodSprite.color = Color.yellow;

@@ -10,6 +10,7 @@ public class TicketInteractable : EnvInteractable
         isRepeatible = true;   //dev'essere false
         interactablesBusy = new Dictionary<GameObject, bool>();
         maxQueue = 4;
+        busy= new bool[2];
         count = transform.childCount;
         for (int i = 0; i < count; i++)
         {
@@ -27,7 +28,7 @@ public class TicketInteractable : EnvInteractable
     // Update is called once per frame
     void Update()
     {
-
+        interactablesBusy.Values.CopyTo(busy, 0);   //FOR DEBUGGING
     }
     public override void Interact(Animator _animator)
     {
