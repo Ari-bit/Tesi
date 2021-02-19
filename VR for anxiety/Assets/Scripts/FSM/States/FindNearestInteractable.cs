@@ -30,13 +30,19 @@ public class FindNearestInteractable : IState
         int count = taskEmpty.transform.childCount;
         for (int i = 0; i < count; i++)
         {
-            tasksObjs.Add(taskEmpty.transform.GetChild(i).gameObject);
+            if(taskEmpty.transform.GetChild(i)!= _avatar.exclude)       //escludi il max queue
+                tasksObjs.Add(taskEmpty.transform.GetChild(i).gameObject);
         }
-
+        //se lista vuota -> non ci sono fratelli -> cambia task
+        if (tasksObjs.Count == 0)
+        {
+            _avatar.task = "Walk";
+            _avatar.fineInteract = true;
+        }
+        //
         GameObject taskObj = tasksObjs
             .OrderBy(t => Vector3.Distance(_avatar.transform.position, t.transform.position))
             .FirstOrDefault();
-        
 
         _avatar.targetObject = taskObj;
         //if (taskObj.transform.childCount != 0)
@@ -68,10 +74,12 @@ public class FindNearestInteractable : IState
 
     public void OnEnter()
     {
-        
     }
     public void OnExit()
     {
+        _avatar.maxQueue = false;
+        _avatar.exclude = null;
+
         //_avatar.prevTask = _avatar.task;
         //_avatar.task = _imanager.GetNextTask();
     }

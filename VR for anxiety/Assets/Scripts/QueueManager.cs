@@ -12,7 +12,6 @@ public class QueueManager : MonoBehaviour
     private int _maxQueue;
     private int queued = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
         //_queuePoints = new List<Transform>();
@@ -49,23 +48,26 @@ public class QueueManager : MonoBehaviour
             if (queued == _maxQueue)
             {
                 Debug.Log("MAXQUEUE");
-                //Selection.activeGameObject = avatar.gameObject;
+                Selection.activeGameObject = avatar.gameObject;
                 //Debug.Break();
-                int index = transform.GetSiblingIndex();
-                int siblingIndex=0;
-                for(int i=0; i<transform.parent.childCount; i++)
-                {
-                    if (i != index)
-                    {
-                        siblingIndex = i;
-                        break;
-                    }
-                }
-                //avatar.Target = transform.parent.GetChild(siblingIndex);
-                //avatar.targetObject = avatar.Target.gameObject;
-                avatar.targetObject = transform.parent.GetChild(siblingIndex).gameObject;       //non basarsi sulla struttura gerarchica (da cambiare)
+                //int index = transform.GetSiblingIndex();
+                //int siblingIndex=0;
+                //for(int i=0; i<transform.parent.childCount; i++)
+                //{
+                //    if (i != index)
+                //    {
+                //        siblingIndex = i;
+                //        break;
+                //    }
+                //}
+                ////avatar.Target = transform.parent.GetChild(siblingIndex);
+                ////avatar.targetObject = avatar.Target.gameObject;
+                //avatar.targetObject = transform.parent.GetChild(siblingIndex).gameObject;       //non basarsi sulla struttura gerarchica (da cambiare)
 
-                avatar.Target = transform.parent.GetChild(siblingIndex).GetChild(0);
+                //avatar.Target = transform.parent.GetChild(siblingIndex).GetChild(0);
+                avatar.exclude = transform;
+                avatar.maxQueue = true;
+                avatar.maxQueueCount++;
             }
             else
             {
@@ -73,7 +75,7 @@ public class QueueManager : MonoBehaviour
                 _avatarQueue.Enqueue(avatar);
                 transform.GetComponentInParent<EnvInteractable>().interactablesBusy[this.gameObject] = true;    //segno come occupato prima di arrivarci
                 avatar.InteractionCompleted += OnAvatarInteractionCompleted;    //il manager si iscrive all'evento per registrare quando l'avatar finisce l'interazione
-                                                                                // per poi toglierlo dalla fila (piuttosto che aspettare che esca dalla zona di trigger
+                                                                                // per poi toglierlo dalla fila (piuttosto che aspettare che esca dalla zona di trigger)
 
                 queued = _avatarQueue.Count;
                 avatar.Target = _queuePoints[queued - 1];

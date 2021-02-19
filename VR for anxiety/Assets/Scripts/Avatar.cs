@@ -32,7 +32,9 @@ public class Avatar : MonoBehaviour
 
     public Action<Avatar> InteractionCompleted;     //evento che indica quando un avatar ha finito l'interazione
                                                     //usato per il dequque degli avatar in fila
-
+    public bool maxQueue=false;
+    public Transform exclude;
+    public int maxQueueCount = 0;
     private void Start()
     {
         //targetManagerObj = GameObject.Find("Target Points");
@@ -70,6 +72,10 @@ public class Avatar : MonoBehaviour
         At(moveForward, moveToSelected, ()=>true);
         At(wait, moveToSelected, InteractableFreed());
 
+        //se maxqueue, cambio target
+        At(moveToSelected, findInteractable, () => maxQueue);
+        //At(findInteractable, selectTarget, Walk());
+        //At(findInteractable, selectTarget, ()=> maxQueueCount>1);
 
         _stateMachine.AddAnyTransition(die, () => isToRemove);
         At(die, selectTarget, SpawnReached());
