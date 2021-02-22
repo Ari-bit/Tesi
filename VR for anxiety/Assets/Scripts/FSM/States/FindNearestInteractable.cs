@@ -36,39 +36,46 @@ public class FindNearestInteractable : IState
         //se lista vuota -> non ci sono fratelli -> cambia task
         if (tasksObjs.Count == 0)
         {
-            _avatar.task = "Walk";
-            _avatar.fineInteract = true;
+            //_avatar.task = "Walk";
+            //_avatar.fineInteract = true;
+            _avatar.maxQueueCount = 2;
+            Debug.Log("no fratelli");
+            return taskEmpty.transform;
         }
         //
-        GameObject taskObj = tasksObjs
-            .OrderBy(t => Vector3.Distance(_avatar.transform.position, t.transform.position))
-            .FirstOrDefault();
-
-        _avatar.targetObject = taskObj;
-        //if (taskObj.transform.childCount != 0)
-        //{
-        //    EnvInteractable interactable = taskObj.transform.parent.GetComponent<EnvInteractable>();
-        //    taskObj = interactable.interactablesBusy.Keys.FirstOrDefault(t => interactable.interactablesBusy[t] == false);
-        //    interactable.interactablesBusy[taskObj] = true;
-        //}
-        interactable = taskObj.transform.parent.GetComponent<EnvInteractable>();
-        //if (interactable.interactablesBusy[taskObj] == true)
-        //{
-        //    GameObject row = new GameObject("posto");
-        //    row.transform.parent = taskObj.transform;
-        //    row.transform.rotation = taskObj.transform.rotation;
-        //    row.transform.position = taskObj.transform.position + 3 * Vector3.right; //verso la x
-        //    taskObj = row;
-        //}
-        if (taskObj.transform.childCount != 0)
+        else
         {
-            taskObj = taskObj.transform.GetChild(0).gameObject;     //punto di controllo
-        }
+            GameObject taskObj = tasksObjs
+                .OrderBy(t => Vector3.Distance(_avatar.transform.position, t.transform.position))
+                .FirstOrDefault();
 
-        //return tasksObjs
-        //    .OrderBy(t => Vector3.Distance(_avatar.transform.position, t.transform.position))
-        //    .FirstOrDefault().transform;
-        return taskObj.transform;
+            _avatar.targetObject = taskObj;
+            //if (taskObj.transform.childCount != 0)
+            //{
+            //    EnvInteractable interactable = taskObj.transform.parent.GetComponent<EnvInteractable>();
+            //    taskObj = interactable.interactablesBusy.Keys.FirstOrDefault(t => interactable.interactablesBusy[t] == false);
+            //    interactable.interactablesBusy[taskObj] = true;
+            //}
+            interactable = taskObj.transform.parent.GetComponent<EnvInteractable>();
+            //if (interactable.interactablesBusy[taskObj] == true)
+            //{
+            //    GameObject row = new GameObject("posto");
+            //    row.transform.parent = taskObj.transform;
+            //    row.transform.rotation = taskObj.transform.rotation;
+            //    row.transform.position = taskObj.transform.position + 3 * Vector3.right; //verso la x
+            //    taskObj = row;
+            //}
+            if (taskObj.transform.childCount != 0)
+            {
+                taskObj = taskObj.transform.GetChild(0).gameObject;     //punto di controllo
+            }
+
+            //return tasksObjs
+            //    .OrderBy(t => Vector3.Distance(_avatar.transform.position, t.transform.position))
+            //    .FirstOrDefault().transform;
+            return taskObj.transform;
+        }
+       
 }
     
 

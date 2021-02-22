@@ -72,10 +72,10 @@ public class Avatar : MonoBehaviour
         At(moveForward, moveToSelected, ()=>true);
         At(wait, moveToSelected, InteractableFreed());
 
-        //se maxqueue, cambio target
+        At(moveToSelected, selectTarget, () => maxQueueCount > 1);      //se 2 maxqueue, cambio task 
+        //se maxqueue, cambio interactable
         At(moveToSelected, findInteractable, () => maxQueue);
-        //At(findInteractable, selectTarget, Walk());
-        //At(findInteractable, selectTarget, ()=> maxQueueCount>1);
+        At(findInteractable, selectTarget, () => maxQueueCount > 1);    //se maxqueue e non ci sono fratelli interactable, cambio task
 
         _stateMachine.AddAnyTransition(die, () => isToRemove);
         At(die, selectTarget, SpawnReached());

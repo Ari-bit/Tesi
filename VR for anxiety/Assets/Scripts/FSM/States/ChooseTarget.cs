@@ -13,7 +13,10 @@ public class ChooseTarget : IState
         _targetManager = targetManager;
     }
 
-    public void OnEnter() { }
+    public void OnEnter()
+    {
+        _avatar.maxQueueCount = 0;
+    }
     public void OnExit() { }
 
     public void Tick()
@@ -21,7 +24,7 @@ public class ChooseTarget : IState
         //_avatar.Target = _targetManager.SetTarget();
         //Debug.Break();
         //_avatar.targetObject = _avatar.Target.gameObject;
-       
+        _avatar.task = "Walk";
         _avatar.targetObject = _targetManager.SetTarget().gameObject;
         _avatar.Target = _avatar.targetObject.transform;
     }

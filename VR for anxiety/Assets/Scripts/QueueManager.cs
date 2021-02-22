@@ -48,8 +48,9 @@ public class QueueManager : MonoBehaviour
             if (queued == _maxQueue)
             {
                 Debug.Log("MAXQUEUE");
-                Selection.activeGameObject = avatar.gameObject;
+                //Selection.activeGameObject = avatar.gameObject;
                 //Debug.Break();
+
                 //int index = transform.GetSiblingIndex();
                 //int siblingIndex=0;
                 //for(int i=0; i<transform.parent.childCount; i++)
@@ -62,12 +63,13 @@ public class QueueManager : MonoBehaviour
                 //}
                 ////avatar.Target = transform.parent.GetChild(siblingIndex);
                 ////avatar.targetObject = avatar.Target.gameObject;
-                //avatar.targetObject = transform.parent.GetChild(siblingIndex).gameObject;       //non basarsi sulla struttura gerarchica (da cambiare)
+                //avatar.targetObject = transform.parent.GetChild(siblingIndex).gameObject;       //non basarsi sulla struttura gerarchica 
 
                 //avatar.Target = transform.parent.GetChild(siblingIndex).GetChild(0);
                 avatar.exclude = transform;
                 avatar.maxQueue = true;
                 avatar.maxQueueCount++;
+                Debug.Log("count: "+avatar.maxQueueCount);
             }
             else
             {
@@ -82,7 +84,9 @@ public class QueueManager : MonoBehaviour
                 //Debug.Log(avatar.Target.name);
                 //Selection.activeGameObject = avatar.gameObject;
                 //Debug.Break();
+                avatar.maxQueue = false;
 
+                avatar.maxQueueCount=0;
                 if (queued > 1)
                 {
                     avatar.isQueuing = true;
