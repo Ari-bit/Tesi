@@ -59,6 +59,8 @@ public class Interact : IState
         {
             _avatar.InteractionCompleted(_avatar);
         }
+
+        _avatar.fineInteract = false;
     }
 
 

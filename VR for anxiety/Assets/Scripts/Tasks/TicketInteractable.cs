@@ -32,6 +32,16 @@ public class TicketInteractable : EnvInteractable
     }
     public override void Interact(Animator _animator)
     {
-        _animator.SetTrigger("PickUp");
+        _animator.GetComponentInParent<Avatar>().sequence = 3;
+        //_animator.gameObject.GetComponent<Avatar>().sequence = 2;
+        _animator.SetTrigger("Button");
+
+        //get plying animation
+        //get component.enabled=false
+        _animator.SetBool("Ticket", true);
+        
+        //_animator.SetBool("Ticket", false);
+
+
     }
 }

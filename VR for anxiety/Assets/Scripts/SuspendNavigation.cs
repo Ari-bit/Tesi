@@ -21,6 +21,7 @@ public class SuspendNavigation : StateMachineBehaviour
         //interactable = animator.GetComponentInParent<Avatar>().Target.gameObject;
         //interactable.GetComponentInParent<EnvInteractable>().interactablesBusy[interactable] = true;
         animator.GetComponentInParent<Avatar>().fineInteract = false;
+        
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -32,8 +33,7 @@ public class SuspendNavigation : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        GetNavMeshAgent(animator).enabled = true;
-        GetNavMeshAgent(animator).isStopped = false;
+        
         //interactable = animator.GetComponentInParent<ReachTarget>()._currentTarget.transform.gameObject;
         //interactable.transform.parent.GetComponent<EnvInteractable>().objects[interactable] = false;
         //interactable.GetComponentInParent<EnvInteractable>().interactablesBusy[interactable] = false;
@@ -44,8 +44,14 @@ public class SuspendNavigation : StateMachineBehaviour
         //Avatar avatar = animator.GetComponentInParent<Avatar>();
         //interactable = avatar.targetObject.GetComponentInParent<EnvInteractable>();
         //interactable.interactablesBusy[avatar.targetObject] = false;
+        animator.GetComponentInParent<Avatar>().sequence--;
+        if (animator.GetComponentInParent<Avatar>().sequence == 0)
+        {
+            GetNavMeshAgent(animator).enabled = true;
+            GetNavMeshAgent(animator).isStopped = false;
+            animator.GetComponentInParent<Avatar>().fineInteract = true;
 
-        animator.GetComponentInParent<Avatar>().fineInteract = true;
+        }
 
     }
 

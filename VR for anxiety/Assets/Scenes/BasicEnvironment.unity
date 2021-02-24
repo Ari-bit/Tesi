@@ -639,6 +639,7 @@ MonoBehaviour:
   count: 0
   isRepeatible: 0
   maxQueue: 0
+  busy: 
 --- !u!1 &245779742 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0,
@@ -1336,6 +1337,7 @@ MonoBehaviour:
   count: 0
   isRepeatible: 0
   maxQueue: 0
+  busy: 
 --- !u!1 &861557057
 GameObject:
   m_ObjectHideFlags: 0
@@ -2043,6 +2045,7 @@ MonoBehaviour:
   count: 0
   isRepeatible: 0
   maxQueue: 0
+  busy: 
 --- !u!1 &1114770080 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100002, guid: 5e9e851c0e142814dac026a256ba2ac0,
@@ -3383,6 +3386,7 @@ MonoBehaviour:
   count: 0
   isRepeatible: 0
   maxQueue: 0
+  busy: 
 --- !u!1 &1648388324
 GameObject:
   m_ObjectHideFlags: 0

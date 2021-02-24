@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections.Generic;
@@ -35,6 +35,8 @@ public class Avatar : MonoBehaviour
     public bool maxQueue=false;
     public Transform exclude;
     public int maxQueueCount = 0;
+
+    public int sequence = 1;    //number of states of an animation sequence
     private void Start()
     {
         //targetManagerObj = GameObject.Find("Target Points");
@@ -100,10 +102,10 @@ public class Avatar : MonoBehaviour
         Func<bool> SpawnReached() => () => !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
         Func<bool> NextTask() => () => 
             //hasInteracted && 
-            task != prevTask && (fineInteract||prevTask=="Walk");
+            task != prevTask && (fineInteract==true||prevTask=="Walk");
         Func<bool> Walk() => () => 
             //hasInteracted && 
-            (task == prevTask || task=="Walk") && (fineInteract || prevTask == "Walk");
+            (task == prevTask || task=="Walk") && (fineInteract==true || prevTask == "Walk");
 
         Func<bool> InteractableIsFree() => () =>
             !navMeshAgent.pathPending &&

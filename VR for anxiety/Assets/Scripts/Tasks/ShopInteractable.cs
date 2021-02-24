@@ -25,6 +25,8 @@ public class ShopInteractable : EnvInteractable
 
     public override void Interact(Animator _animator)
     {
+        _animator.GetComponentInParent<Avatar>().sequence = 1;
+
         _animator.SetTrigger("PickUp");
     }
 }
