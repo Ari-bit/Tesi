@@ -16,6 +16,7 @@ public class ChooseTarget : IState
     public void OnEnter()
     {
         _avatar.maxQueueCount = 0;
+        _avatar.maxQueue = false;
     }
     public void OnExit() { }
 
