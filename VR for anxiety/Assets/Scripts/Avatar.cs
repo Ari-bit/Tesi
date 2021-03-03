@@ -37,6 +37,8 @@ public class Avatar : MonoBehaviour
     public int maxQueueCount = 0;
 
     public int sequence = 1;    //number of states of an animation sequence
+
+    public bool trigger = false;
     private void Start()
     {
         //targetManagerObj = GameObject.Find("Target Points");
@@ -90,8 +92,9 @@ public class Avatar : MonoBehaviour
         //Func<bool> TargetReached() => () => Target != null && !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && (!isInteractive);
         Func<bool> PlayAnimation() => () =>
             //Target != null &&
-            !navMeshAgent.pathPending &&
-            navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance
+            ((!navMeshAgent.pathPending &&
+            navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+            || trigger==true)
             //&& isInteractive
             //&& task != "Walk"
             //&& Target.parent.GetComponent<EnvInteractable>().interactablesBusy[Target.transform.gameObject] == false

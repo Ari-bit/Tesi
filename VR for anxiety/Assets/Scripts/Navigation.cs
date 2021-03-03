@@ -1,0 +1,52 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+
+public class Navigation : MonoBehaviour
+{
+    private NavMeshAgent _navMeshAgent;
+    private Avatar _avatar;
+    Coroutine smoothMove = null;
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        _avatar = other.GetComponentInParent<Avatar>();
+        if (_avatar.Target == transform)
+        {
+            _navMeshAgent = _avatar.GetComponent<NavMeshAgent>();
+            //_avatar.transform.LookAt(_avatar.Target);
+
+            StartCoroutine(RotateToDirection(_avatar.transform, _avatar.Target.position, 0.5f));
+            _avatar.trigger = true;
+            _navMeshAgent.isStopped  = true;
+            Debug.Log("trigger target");
+        }
+
+    }
+    public IEnumerator RotateToDirection(Transform transform, Vector3 positionToLook, float timeToRotate)
+    {
+        var startRotation = transform.rotation;
+        var direction = positionToLook - transform.position;
+        var finalRotation = Quaternion.LookRotation(direction);
+        var t = 0f;
+        while (t <= 1f)
+        {
+            t += Time.deltaTime / timeToRotate;
+            _avatar.transform.rotation = Quaternion.Lerp(startRotation, finalRotation, t);
+            yield return null;
+        }
+        _avatar.transform.rotation = finalRotation;
+    }
+}
