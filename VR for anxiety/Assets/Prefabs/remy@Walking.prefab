@@ -2868,6 +2868,7 @@ MonoBehaviour:
   exclude: {fileID: 0}
   maxQueueCount: 0
   sequence: 1
+  trigger: 0
 --- !u!195 &239326247261274812
 NavMeshAgent:
   m_ObjectHideFlags: 0

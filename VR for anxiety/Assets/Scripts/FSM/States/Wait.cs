@@ -17,6 +17,7 @@ public class Wait : IState
     {
         //Debug.Break();
         //_navMeshAgent.isStopped = true;
+        //_navMeshAgent.velocity= Vector3.zero;
         //_navMeshAgent.enabled = false;
         _animator.SetFloat("Forward", 0);
         _navMeshAgent.speed = _animator.GetFloat("Forward");
