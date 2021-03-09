@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -23,16 +24,18 @@ public class Navigation : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         _avatar = other.GetComponentInParent<Avatar>();
-        if (_avatar.Target == transform)
+        if ((_avatar.Target == transform.parent)|| (_avatar.Target == transform))
         {
             _navMeshAgent = _avatar.GetComponent<NavMeshAgent>();
             //_avatar.transform.LookAt(_avatar.Target);
-
+            
             StartCoroutine(RotateToDirection(_avatar.transform, _avatar.Target.position, 0.5f));
             _avatar.trigger = true;
             _navMeshAgent.isStopped  = true;
             //_navMeshAgent.velocity= Vector3.zero;
-            Debug.Log("trigger target");
+            Debug.Log("trigger target "+ this.name);
+            //Selection.activeGameObject = _avatar.gameObject;
+            //Debug.Break();
         }
 
     }
