@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class Avatar : MonoBehaviour
 {
     [SerializeField] private GameObject moodVisual;
-    private GameObject targetManagerObj;
+    //private GameObject targetManagerObj;
     //public bool isInteractive =false;
     public bool isToRemove = false;
     //public bool hasInteracted = false;

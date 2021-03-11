@@ -47,7 +47,7 @@ public class QueueManager : MonoBehaviour
         {
             if (queued == _maxQueue)
             {
-                Debug.Log("MAXQUEUE");
+                //Debug.Log("MAXQUEUE");
                 //Selection.activeGameObject = avatar.gameObject;
                 //Debug.Break();
 
@@ -69,7 +69,7 @@ public class QueueManager : MonoBehaviour
                 avatar.exclude = transform;
                 avatar.maxQueue = true;
                 avatar.maxQueueCount++;
-                Debug.Log("count: "+avatar.maxQueueCount);
+                //Debug.Log("count: "+avatar.maxQueueCount);
             }
             else
             {

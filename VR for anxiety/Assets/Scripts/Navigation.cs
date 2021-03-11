@@ -31,7 +31,9 @@ public class Navigation : MonoBehaviour
             
             StartCoroutine(RotateToDirection(_avatar.transform, _avatar.Target.position, 0.5f));
             _avatar.trigger = true;
+            //Debug.Break();
             _navMeshAgent.isStopped  = true;
+            _navMeshAgent.ResetPath();
             //_navMeshAgent.velocity= Vector3.zero;
             Debug.Log("trigger target "+ this.name);
             //Selection.activeGameObject = _avatar.gameObject;
@@ -43,6 +45,7 @@ public class Navigation : MonoBehaviour
     {
         var startRotation = transform.rotation;
         var direction = positionToLook - transform.position;
+        direction.y = 0f;           //only rotate on y axis
         var finalRotation = Quaternion.LookRotation(direction);
         var t = 0f;
         var startVel = _navMeshAgent.velocity;
