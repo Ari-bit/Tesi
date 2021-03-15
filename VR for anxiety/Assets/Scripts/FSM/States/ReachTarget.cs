@@ -42,9 +42,12 @@ public class ReachTarget : IState
 
     public void OnEnter()
     {
+        //_target = _avatar.Target;
+        //_navMeshAgent.SetDestination(_target.position);
+
         //_navMeshAgent.stoppingDistance = 0.6f;
 
-             //prova, da cambiare con la vel di ogni avatar
+        //prova, da cambiare con la vel di ogni avatar
         _avatar.ShowMood();
         _navMeshAgent.speed = _animator.GetFloat("Forward");
 

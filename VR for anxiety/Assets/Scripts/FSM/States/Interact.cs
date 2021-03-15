@@ -33,7 +33,7 @@ public class Interact : IState
     public void OnEnter()
     {
         //_avatar.transform.LookAt(_avatar.Target);
-        _avatar.trigger = false;
+        //_avatar.trigger = false;
         _avatar.prevTask = _avatar.task;
         if (_avatar.prevTask != "Walk" && _imanager.IsTaskRepeatable(_avatar.prevTask) == false)
         {
@@ -63,6 +63,8 @@ public class Interact : IState
         }
 
         _avatar.fineInteract = false;
+        _avatar.trigger = false;
+
     }
 
 
