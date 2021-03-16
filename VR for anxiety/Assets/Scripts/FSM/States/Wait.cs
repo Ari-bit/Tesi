@@ -21,6 +21,7 @@ public class Wait : IState
         //_navMeshAgent.enabled = false;
         _animator.SetFloat("Forward", 0);
         _navMeshAgent.speed = _animator.GetFloat("Forward");
+        _navMeshAgent.ResetPath();
         //_animator.SetTrigger("Idle");
         //Debug.Log("Start wait");
     }

@@ -52,7 +52,9 @@ public class Avatar : MonoBehaviour
 
         var findInteractable= new FindNearestInteractable(this, scheduler);
         var selectTarget= new ChooseTarget(this, targetManager);
-        var moveToSelected = new ReachTarget(this, navMeshAgent, animator, scheduler);
+        var moveToSelected = new ReachTarget(this, navMeshAgent, animator
+            //, scheduler
+            );
         var interact = new Interact(this, animator, scheduler);
         var die = new Die(this, navMeshAgent, animator, spawnPos);
         var moveForward= new MoveForward(this);
@@ -147,7 +149,7 @@ public class Avatar : MonoBehaviour
                 break;
             case 2:
                 moodSprite.color = Color.white;
-                _animator.SetFloat("Forward", 0.4f);
+                _animator.SetFloat("Forward", 0.5f);
                 break;
             case 3:
                 moodSprite.color = Color.yellow;
@@ -162,5 +164,8 @@ public class Avatar : MonoBehaviour
                 break;
 
         }
+
+        float speed = _animator.GetFloat("Forward");
+        _animator.SetFloat("Reactivity", speed);
     }
 }
