@@ -83,6 +83,10 @@ public class ReachTarget : IState
         //    _avatar.NRFinishedTasks.Add(_avatar.prevTask);
         //}
         //_avatar.task = _imanager.GetNextTask(_avatar);
+
+        //se l'avatar sta cercando un altro punto (perché visto) per morire
+        if (_avatar.findAnotherPoint)
+            _avatar.isToRemove = true;  //per passare allo stato Die
     }
 
 }

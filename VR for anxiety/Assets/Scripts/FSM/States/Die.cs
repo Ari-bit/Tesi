@@ -24,28 +24,40 @@ public class Die : IState
 
     public void OnEnter()
     {
-
-    }
-
-    public void Tick()
-    {
         foreach (Transform t in _spawnPos)
         {
             _spawnPoints.Add(t.gameObject);
         }
+    }
+
+    public void Tick()
+    {
         _target = _spawnPoints
             .OrderBy(s => Vector3.Distance(_avatar.transform.position, s.transform.position))
             .FirstOrDefault().transform;
         _avatar.Target = _target;
-        _navMeshAgent.stoppingDistance = 0.5f;
-        _navMeshAgent.speed = _animator.GetFloat("Forward");
+
+        //prende i valori iniziali
+        _animator.SetFloat("Forward", _avatar.speed);
+        _navMeshAgent.stoppingDistance = _avatar.speed + 0.2f;
+        _navMeshAgent.speed = _avatar.speed;
+
         _navMeshAgent.enabled = true;
         _navMeshAgent.SetDestination(_target.position);
         _avatar.isToRemove = false;
     }
+
     public void OnExit()
     {
-        Object.Destroy(_avatar.transform.gameObject);
+        Spawn spawn = new Spawn();
+        if (spawn.IsSpawnHidden(_target, Camera.main) == true)
+        {
+            Object.Destroy(_avatar.transform.gameObject);
+            _avatar.findAnotherPoint = false;
+        }
+        else
+        {
+            _avatar.findAnotherPoint = true;
+        }
     }
-
 }

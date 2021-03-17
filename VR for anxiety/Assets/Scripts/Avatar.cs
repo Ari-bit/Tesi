@@ -39,6 +39,12 @@ public class Avatar : MonoBehaviour
     public int sequence = 1;    //number of states of an animation sequence
 
     public bool trigger = false;
+
+    public bool findAnotherPoint = false;   //true se l'avatar deve cercare un altro punto per morire, perchè visto dall'utente
+
+    //CARATTERISTICHE
+    public float speed;
+
     private void Start()
     {
         //targetManagerObj = GameObject.Find("Target Points");
@@ -145,27 +151,29 @@ public class Avatar : MonoBehaviour
         {
             case 1:
                 moodSprite.color=Color.green;
-                _animator.SetFloat("Forward", 0.4f);
+                this.speed = 0.4f;
+                _animator.SetFloat("Forward", speed);
                 break;
             case 2:
                 moodSprite.color = Color.white;
-                _animator.SetFloat("Forward", 0.5f);
+                this.speed = 0.5f;
+                _animator.SetFloat("Forward", speed);
                 break;
             case 3:
                 moodSprite.color = Color.yellow;
-                _animator.SetFloat("Forward", 0.5f);
+                this.speed = 0.5f;
+                _animator.SetFloat("Forward", speed);
                 break;
             case 4:
                 moodSprite.color = Color.red;
                 //this.GetComponentInParent<Animator>().SetFloat("Forward", 0.6f );
-                _animator.SetFloat("Forward", 0.6f);
+                this.speed = 0.6f;
+                _animator.SetFloat("Forward", speed);
                 break;
             default:
                 break;
 
         }
-
-        float speed = _animator.GetFloat("Forward");
         _animator.SetFloat("Reactivity", speed);
     }
 }
