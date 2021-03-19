@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UMA;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -8,6 +9,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private AvatarManager avatarManager;
     //[SerializeField] private int MAX_AVATAR;
     [SerializeField] private SlidersUI slider;
+    [SerializeField] private UMARandomAvatar uma;
 
     private int spawnIndex;
     private Transform spawnPos;
@@ -68,8 +70,10 @@ public class SpawnManager : MonoBehaviour
         if (spawn.IsSpawnHidden(spawnPos, cam) == true)
         //if (IsSpawnHidden() == true)
         {
-            GameObject avatar = Instantiate(avatarPrefab, spawnpoints[spawnIndex].position, avatarPrefab.transform.rotation, transform.parent);
-            avatarManager.Init(avatar, spawnpoints);
+            uma.GenerateRandomCharacter(spawnpoints[spawnIndex].position, avatarPrefab.transform.rotation, "Avatar "+(avatarCount+1));
+            //GameObject avatar = Instantiate(avatarPrefab, spawnpoints[spawnIndex].position, avatarPrefab.transform.rotation, transform.parent);
+            //avatarManager.Init(avatar, spawnpoints);
+            avatarManager.Init(uma.go, spawnpoints);
             avatarCount++;
         }
         else spawnAvatars();

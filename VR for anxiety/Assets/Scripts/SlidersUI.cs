@@ -7,7 +7,7 @@ public class SlidersUI : MonoBehaviour
 {
 
     private float moodValue = 0.0f;
-    private float avatarCount = 10;
+    private float avatarCount = 40;
     private float controllerRadius = 0.5f;
 
     void OnGUI()
