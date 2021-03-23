@@ -66,7 +66,7 @@ public class Navigation : MonoBehaviour
         }
         _avatar.transform.rotation = finalRotation;
         //_navMeshAgent.velocity = Vector3.zero;
-        //_avatar.GetComponentInParent<Animator>().SetFloat("Forward", 0f);
+        _avatar.GetComponentInParent<Animator>().SetFloat("Forward", 0f);
 
     }
 }

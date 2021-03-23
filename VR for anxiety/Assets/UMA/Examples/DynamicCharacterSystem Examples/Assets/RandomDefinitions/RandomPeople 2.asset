@@ -127,7 +127,7 @@ MonoBehaviour:
         GuiFoldout: 1
         Delete: 0
         CurrentColor: 0
-      GuiFoldout: 1
+      GuiFoldout: 0
       Delete: 0
       AddColorTable: 0
       PossibleColors:
@@ -154,7 +154,7 @@ MonoBehaviour:
         GuiFoldout: 1
         Delete: 0
         CurrentColor: 0
-      GuiFoldout: 1
+      GuiFoldout: 0
       Delete: 0
       AddColorTable: 0
       PossibleColors:
@@ -180,7 +180,7 @@ MonoBehaviour:
         GuiFoldout: 1
         Delete: 0
         CurrentColor: 0
-      GuiFoldout: 1
+      GuiFoldout: 0
       Delete: 0
       AddColorTable: 0
       PossibleColors:
@@ -350,7 +350,7 @@ MonoBehaviour:
     raceData: {fileID: 11400000, guid: f8fea6f0ee17b3f42a4ae6cfb627bab3, type: 2}
     GuiFoldout: 1
     ColorsFoldout: 0
-    WardrobeFoldout: 0
+    WardrobeFoldout: 1
     DnaFoldout: 0
     Delete: 0
     AddColorTable: 0
@@ -451,30 +451,11 @@ MonoBehaviour:
     - WardrobeSlot: {fileID: 11400000, guid: 1df4eb647357a74498fa7e6b4672ad8d, type: 2}
       Chance: 1
       Colors: []
-      GuiFoldout: 1
+      GuiFoldout: 0
       Delete: 0
       AddColorTable: 0
       PossibleColors:
       - Hair
-    - WardrobeSlot: {fileID: 11400000, guid: f47ce9b8a0d9ecd48a39ef3f5c2447a6, type: 2}
-      Chance: 1
-      Colors:
-      - ColorName: Shirt
-        ColorTable: {fileID: 11400000, guid: 9d6638c0673482444a53d5dd707c3acc, type: 2}
-        GuiFoldout: 1
-        Delete: 0
-        CurrentColor: 0
-      - ColorName: ShirtAccent
-        ColorTable: {fileID: 11400000, guid: c767f9efa84cf40269e4475b89bb952d, type: 2}
-        GuiFoldout: 1
-        Delete: 0
-        CurrentColor: 1
-      GuiFoldout: 1
-      Delete: 0
-      AddColorTable: 0
-      PossibleColors:
-      - Shirt
-      - ShirtAccent
     - WardrobeSlot: {fileID: 11400000, guid: eaf6bd26b53c0ad4b80f876eddac0a32, type: 2}
       Chance: 1
       Colors:
@@ -502,7 +483,7 @@ MonoBehaviour:
         GuiFoldout: 1
         Delete: 0
         CurrentColor: 3
-      GuiFoldout: 0
+      GuiFoldout: 1
       Delete: 0
       AddColorTable: 0
       PossibleColors:
@@ -512,8 +493,13 @@ MonoBehaviour:
       - Shirt2
     - WardrobeSlot: {fileID: 11400000, guid: 08ee8add251c0604787435e6e676f3db, type: 2}
       Chance: 1
-      Colors: []
-      GuiFoldout: 0
+      Colors:
+      - ColorName: Shirt
+        ColorTable: {fileID: 11400000, guid: 9d6638c0673482444a53d5dd707c3acc, type: 2}
+        GuiFoldout: 1
+        Delete: 0
+        CurrentColor: 0
+      GuiFoldout: 1
       Delete: 0
       AddColorTable: 0
       PossibleColors:
@@ -638,7 +624,7 @@ MonoBehaviour:
         GuiFoldout: 1
         Delete: 0
         CurrentColor: 0
-      GuiFoldout: 0
+      GuiFoldout: 1
       Delete: 0
       AddColorTable: 0
       PossibleColors:
@@ -656,29 +642,10 @@ MonoBehaviour:
       AddColorTable: 0
       PossibleColors:
       - Pants
-    - WardrobeSlot: {fileID: 11400000, guid: 71e3ef35d8b941d4ab538b01f57dbb79, type: 2}
-      Chance: 1
-      Colors:
-      - ColorName: Pants
-        ColorTable: {fileID: 11400000, guid: 395ac4e6df33b4902af0e087630972de, type: 2}
-        GuiFoldout: 1
-        Delete: 0
-        CurrentColor: 0
-      - ColorName: Hearts
-        ColorTable: {fileID: 11400000, guid: cefd0c20c262a4d2fa73e0f127b41431, type: 2}
-        GuiFoldout: 1
-        Delete: 0
-        CurrentColor: 1
-      GuiFoldout: 0
-      Delete: 0
-      AddColorTable: 0
-      PossibleColors:
-      - Pants
-      - Hearts
     - WardrobeSlot: {fileID: 11400000, guid: 8ea3bcf334fb01b4ebab82092aa4ff46, type: 2}
       Chance: 1
       Colors: []
-      GuiFoldout: 0
+      GuiFoldout: 1
       Delete: 0
       AddColorTable: 0
       PossibleColors: []
@@ -690,7 +657,7 @@ MonoBehaviour:
         GuiFoldout: 1
         Delete: 0
         CurrentColor: 0
-      GuiFoldout: 0
+      GuiFoldout: 1
       Delete: 0
       AddColorTable: 0
       PossibleColors:
@@ -751,9 +718,9 @@ MonoBehaviour:
       MaxValue: 0.6216216
       Delete: 0
     raceData: {fileID: 11400000, guid: 62688b7aa02fbc544916e522fcc239c7, type: 2}
-    GuiFoldout: 1
+    GuiFoldout: 0
     ColorsFoldout: 0
-    WardrobeFoldout: 0
+    WardrobeFoldout: 1
     DnaFoldout: 0
     Delete: 0
     AddColorTable: 0

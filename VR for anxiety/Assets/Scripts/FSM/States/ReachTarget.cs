@@ -36,6 +36,9 @@ public class ReachTarget : IState
         //    TimeStuck += Time.deltaTime;
 
         //_lastPosition = _avatar.transform.position;
+        if(_animator.GetFloat("Forward")<=0f)       //introduce bug??
+            _avatar.ShowMood();
+
         if (_navMeshAgent.isStopped == false)
         {
             _target = _avatar.Target;

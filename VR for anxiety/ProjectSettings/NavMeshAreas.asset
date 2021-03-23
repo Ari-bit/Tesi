@@ -12,7 +12,7 @@ NavMeshProjectSettings:
   - name: Jump
     cost: 2
   - name: Fila
-    cost: 4
+    cost: 6
   - name: 
     cost: 1
   - name: 

@@ -38,7 +38,7 @@ public class TicketInteractable : EnvInteractable
 
         //get plying animation
         //get component.enabled=false
-        _animator.SetBool("Ticket", true);
+        _animator.SetBool("Ticket", true);      //va settato false da qualche parte
         
         //_animator.SetBool("Ticket", false);
 
