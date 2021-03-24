@@ -8,9 +8,10 @@ public class QueueManager : MonoBehaviour
     //private List<Transform> _queuePoints;
     private Transform[] _queuePoints;
 
-    public Queue<Avatar> _avatarQueue;
+    private Queue<Avatar> _avatarQueue;
     private int _maxQueue;
-    private int queued = 0;
+    public int queued = 0;      //DEBUG
+    public Avatar[] avatarArray;        //DEBUG
 
     void Start()
     {
@@ -38,62 +39,68 @@ public class QueueManager : MonoBehaviour
         //queued = _avatarQueue.Count;
         //vedere se un avatar sta arrivando (controllare avatar.targetObj?)
         //assegbarlo ad un punto della fila (cambiargli il target, inserirlo in queue)
+        avatarArray= _avatarQueue.ToArray();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Avatar avatar= other.GetComponentInParent<Avatar>();
-        if(avatar.targetObject== transform.gameObject)
+        Avatar avatar;
+        if (other.GetComponentInParent<Avatar>()!=null)
         {
-            if (queued == _maxQueue)
+            avatar = other.GetComponentInParent<Avatar>();
+            if (avatar.targetObject == transform.gameObject && !_avatarQueue.Contains(avatar))
             {
-                //Debug.Log("MAXQUEUE");
-                //Selection.activeGameObject = avatar.gameObject;
-                //Debug.Break();
-
-                //int index = transform.GetSiblingIndex();
-                //int siblingIndex=0;
-                //for(int i=0; i<transform.parent.childCount; i++)
-                //{
-                //    if (i != index)
-                //    {
-                //        siblingIndex = i;
-                //        break;
-                //    }
-                //}
-                ////avatar.Target = transform.parent.GetChild(siblingIndex);
-                ////avatar.targetObject = avatar.Target.gameObject;
-                //avatar.targetObject = transform.parent.GetChild(siblingIndex).gameObject;       //non basarsi sulla struttura gerarchica 
-
-                //avatar.Target = transform.parent.GetChild(siblingIndex).GetChild(0);
-                avatar.exclude = transform;
-                avatar.maxQueue = true;
-                avatar.maxQueueCount++;
-                //Debug.Log("count: "+avatar.maxQueueCount);
-            }
-            else
-            {
-                //Debug.Log("sta andando a ticket");  
-                _avatarQueue.Enqueue(avatar);
-                transform.GetComponentInParent<EnvInteractable>().interactablesBusy[this.gameObject] = true;    //segno come occupato prima di arrivarci
-                avatar.InteractionCompleted += OnAvatarInteractionCompleted;    //il manager si iscrive all'evento per registrare quando l'avatar finisce l'interazione
-                                                                                // per poi toglierlo dalla fila (piuttosto che aspettare che esca dalla zona di trigger)
-
-                queued = _avatarQueue.Count;
-                avatar.Target = _queuePoints[queued - 1];
-                //Debug.Log(avatar.Target.name);
-                //Selection.activeGameObject = avatar.gameObject;
-                //Debug.Break();
-                avatar.maxQueue = false;
-
-                avatar.maxQueueCount=0;
-                if (queued > 1)
+                if (queued == _maxQueue)
                 {
-                    avatar.isQueuing = true;
+                    //Debug.Log("MAXQUEUE");
+                    //Selection.activeGameObject = avatar.gameObject;
+                    //Debug.Break();
+
+                    //int index = transform.GetSiblingIndex();
+                    //int siblingIndex=0;
+                    //for(int i=0; i<transform.parent.childCount; i++)
+                    //{
+                    //    if (i != index)
+                    //    {
+                    //        siblingIndex = i;
+                    //        break;
+                    //    }
+                    //}
+                    ////avatar.Target = transform.parent.GetChild(siblingIndex);
+                    ////avatar.targetObject = avatar.Target.gameObject;
+                    //avatar.targetObject = transform.parent.GetChild(siblingIndex).gameObject;       //non basarsi sulla struttura gerarchica 
+
+                    //avatar.Target = transform.parent.GetChild(siblingIndex).GetChild(0);
+                    avatar.exclude = transform;
+                    avatar.maxQueue = true;
+                    avatar.maxQueueCount++;
+                    //Debug.Log("count: "+avatar.maxQueueCount);
                 }
+                else
+                {
+                    //Debug.Log("sta andando a ticket");  
+                    _avatarQueue.Enqueue(avatar);
+                    transform.GetComponentInParent<EnvInteractable>().interactablesBusy[this.gameObject] = true;    //segno come occupato prima di arrivarci
+                    avatar.InteractionCompleted += OnAvatarInteractionCompleted;    //il manager si iscrive all'evento per registrare quando l'avatar finisce l'interazione
+                                                                                    // per poi toglierlo dalla fila (piuttosto che aspettare che esca dalla zona di trigger)
+
+                    queued = _avatarQueue.Count;
+                    avatar.Target = _queuePoints[queued - 1];
+                    //Debug.Log(avatar.Target.name);
+                    //Selection.activeGameObject = avatar.gameObject;
+                    //Debug.Break();
+                    avatar.maxQueue = false;
+
+                    avatar.maxQueueCount = 0;
+                    if (queued > 1)
+                    {
+                        avatar.isQueuing = true;
+                    }
+                }
+
             }
-            
         }
+        
     }
 
     private void OnAvatarInteractionCompleted(Avatar avatar) 
@@ -111,4 +118,19 @@ public class QueueManager : MonoBehaviour
             }
         }
     }
+
+    //die case
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    Avatar avatar;
+    //    if (other.GetComponentInParent<Avatar>() != null)
+    //    {
+    //        avatar = other.GetComponentInParent<Avatar>();
+    //        if (_avatarQueue.Contains(avatar)&&avatar._currentState=="Die")     //non un gran che
+    //        {
+    //            _avatarQueue.Dequeue();
+    //            queued = _avatarQueue.Count;
+    //        }
+    //    }
+    //}
 }

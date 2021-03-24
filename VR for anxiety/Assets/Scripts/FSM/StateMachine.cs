@@ -78,4 +78,9 @@ public class StateMachine
 
       return null;
    }
+
+   public string GetCurrentStateName()
+   {
+       return _currentState.ToString();
+   }
 }

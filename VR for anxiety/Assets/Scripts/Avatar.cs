@@ -42,6 +42,9 @@ public class Avatar : MonoBehaviour
 
     public bool findAnotherPoint = false;   //true se l'avatar deve cercare un altro punto per morire, perchè visto dall'utente
 
+    public string _currentState;    //DEBUG
+
+
     //CARATTERISTICHE
     public float speed;
 
@@ -141,31 +144,41 @@ public class Avatar : MonoBehaviour
         ;
     }
 
-    private void Update() => _stateMachine.Tick();
+    //private void Update() => _stateMachine.Tick();
+    private void Update()
+    {
+        _stateMachine.Tick();
+        _currentState = _stateMachine.GetCurrentStateName();
+    } 
 
-    public void ShowMood()
+    public void ShowMood()      //staccare il mood dalla speed (che dev'essere chiamata più volte)
     {
         moodSprite = moodVisual.GetComponent<SpriteRenderer>();
+        var expressionController = GetComponent<UMAMoodSlider>();
         Animator _animator = GetComponent<Animator>();
         switch (mood)
         {
             case 1:
                 moodSprite.color=Color.green;
+                expressionController.mood = 1;      //happy
                 this.speed = 0.4f;
                 _animator.SetFloat("Forward", speed);
                 break;
             case 2:
-                moodSprite.color = Color.white;
+                moodSprite.color = Color.white;     
+                expressionController.mood = 0;      //neutral
                 this.speed = 0.5f;
                 _animator.SetFloat("Forward", speed);
                 break;
             case 3:
                 moodSprite.color = Color.yellow;
+                expressionController.mood = 2;      //sad
                 this.speed = 0.5f;
                 _animator.SetFloat("Forward", speed);
                 break;
             case 4:
                 moodSprite.color = Color.red;
+                expressionController.mood = 3;      //angry
                 //this.GetComponentInParent<Animator>().SetFloat("Forward", 0.6f );
                 this.speed = 0.6f;
                 _animator.SetFloat("Forward", speed);

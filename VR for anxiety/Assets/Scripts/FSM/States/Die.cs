@@ -45,6 +45,11 @@ public class Die : IState
         _navMeshAgent.enabled = true;
         _navMeshAgent.SetDestination(_target.position);
         _avatar.isToRemove = false;
+
+        if (_avatar.InteractionCompleted != null)
+        {
+            _avatar.InteractionCompleted(_avatar);      //per svuotare la queue
+        }
     }
 
     public void OnExit()

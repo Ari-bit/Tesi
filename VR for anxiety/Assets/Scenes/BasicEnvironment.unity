@@ -33997,6 +33997,7 @@ MonoBehaviour:
   sequence: 1
   trigger: 0
   findAnotherPoint: 0
+  _currentState: 
   speed: 0
 --- !u!1001 &7127538092680866321
 PrefabInstance:
