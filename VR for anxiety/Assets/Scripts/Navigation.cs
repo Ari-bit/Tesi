@@ -23,25 +23,28 @@ public class Navigation : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        _avatar = other.GetComponentInParent<Avatar>();
-        if ((_avatar.Target == transform.parent)|| (_avatar.Target == transform))
+        if (other.GetComponentInParent<Avatar>() != null)
         {
-            _navMeshAgent = _avatar.GetComponent<NavMeshAgent>();
-            //_avatar.transform.LookAt(_avatar.Target);
-            
-            StartCoroutine(RotateToDirection(_avatar.transform, _avatar.Target.position, 0.5f));
-            _navMeshAgent.stoppingDistance = 1.5f;      //to change state
-            _avatar.trigger = true;
-            //Debug.Break();
-            _navMeshAgent.isStopped  = true;
-            //_avatar.GetComponentInParent<Animator>().SetFloat("Forward", 0f);
-            _navMeshAgent.speed = 0f;
-            _navMeshAgent.ResetPath();
-            //_navMeshAgent.velocity= Vector3.zero;
-            //Debug.Log("trigger target "+ this.name);
-            //Selection.activeGameObject = _avatar.gameObject;
-            //Debug.Break();
-            //Debug.Log(_navMeshAgent.pathEndPosition+ " "+ _navMeshAgent.destination);
+            _avatar = other.GetComponentInParent<Avatar>();
+            if ((_avatar.Target == transform.parent) || (_avatar.Target == transform))
+            {
+                _navMeshAgent = _avatar.GetComponent<NavMeshAgent>();
+                //_avatar.transform.LookAt(_avatar.Target);
+
+                StartCoroutine(RotateToDirection(_avatar.transform, _avatar.Target.position, 0.5f));
+                _navMeshAgent.stoppingDistance = 1.5f;      //to change state
+                _avatar.trigger = true;
+                //Debug.Break();
+                _navMeshAgent.isStopped = true;
+                //_avatar.GetComponentInParent<Animator>().SetFloat("Forward", 0f);
+                _navMeshAgent.speed = 0f;
+                _navMeshAgent.ResetPath();
+                //_navMeshAgent.velocity= Vector3.zero;
+                //Debug.Log("trigger target "+ this.name);
+                //Selection.activeGameObject = _avatar.gameObject;
+                //Debug.Break();
+                //Debug.Log(_navMeshAgent.pathEndPosition+ " "+ _navMeshAgent.destination);
+            }
         }
 
     }

@@ -37,7 +37,8 @@ public class ReachTarget : IState
 
         //_lastPosition = _avatar.transform.position;
         if(_animator.GetFloat("Forward")<=0f)       //introduce bug??
-            _avatar.ShowMood();
+            //_avatar.ShowMood();
+            _avatar.SetSpeed();
 
         if (_navMeshAgent.isStopped == false)
         {
@@ -53,8 +54,10 @@ public class ReachTarget : IState
 
         //_navMeshAgent.stoppingDistance = 0.6f;
 
-        //prova, da cambiare con la vel di ogni avatar
-        _avatar.ShowMood();
+        
+        //_avatar.ShowMood();
+        _avatar.SetSpeed();
+
         _navMeshAgent.speed = _animator.GetFloat("Forward");
 
         _navMeshAgent.stoppingDistance = _animator.GetFloat("Forward") + 0.2f;

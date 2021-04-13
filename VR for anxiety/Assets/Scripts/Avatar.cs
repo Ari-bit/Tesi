@@ -155,30 +155,58 @@ public class Avatar : MonoBehaviour
     {
         moodSprite = moodVisual.GetComponent<SpriteRenderer>();
         var expressionController = GetComponent<UMAMoodSlider>();
-        Animator _animator = GetComponent<Animator>();
+        //Animator _animator = GetComponent<Animator>();
         switch (mood)
         {
             case 1:
                 moodSprite.color=Color.green;
                 expressionController.mood = 1;      //happy
-                this.speed = 0.4f;
-                _animator.SetFloat("Forward", speed);
+                //this.speed = 0.4f;
+                //_animator.SetFloat("Forward", speed);
                 break;
             case 2:
                 moodSprite.color = Color.white;     
                 expressionController.mood = 0;      //neutral
-                this.speed = 0.5f;
-                _animator.SetFloat("Forward", speed);
+                //this.speed = 0.5f;
+                //_animator.SetFloat("Forward", speed);
                 break;
             case 3:
                 moodSprite.color = Color.yellow;
                 expressionController.mood = 2;      //sad
-                this.speed = 0.5f;
-                _animator.SetFloat("Forward", speed);
+                //this.speed = 0.5f;
+                //_animator.SetFloat("Forward", speed);
                 break;
             case 4:
                 moodSprite.color = Color.red;
                 expressionController.mood = 3;      //angry
+                //this.GetComponentInParent<Animator>().SetFloat("Forward", 0.6f );
+                //this.speed = 0.6f;
+                //_animator.SetFloat("Forward", speed);
+                break;
+            default:
+                break;
+
+        }
+        //_animator.SetFloat("Reactivity", speed);
+    }
+    public void SetSpeed()
+    {
+        Animator _animator = GetComponent<Animator>();
+        switch (mood)
+        {
+            case 1://happy
+                this.speed = 0.4f;
+                _animator.SetFloat("Forward", speed);
+                break;
+            case 2://neutral
+                this.speed = 0.5f;
+                _animator.SetFloat("Forward", speed);
+                break;
+            case 3://sad
+                this.speed = 0.5f;
+                _animator.SetFloat("Forward", speed);
+                break;
+            case 4://angry
                 //this.GetComponentInParent<Animator>().SetFloat("Forward", 0.6f );
                 this.speed = 0.6f;
                 _animator.SetFloat("Forward", speed);
