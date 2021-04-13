@@ -30,6 +30,12 @@ public class UMAMoodSlider : MonoBehaviour {
 		expression = GetComponent<ExpressionPlayer>();
 		expression.enableBlinking = true;
 		expression.enableSaccades = true;
+
+        //prove
+        expression.blinkDuration = 0.1f;
+        expression.minBlinkDelay = 1;
+        expression.maxBlinkDelay = 10;
+
 		connected = true;
 	}
 	

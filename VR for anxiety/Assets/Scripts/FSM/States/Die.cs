@@ -28,6 +28,10 @@ public class Die : IState
         {
             _spawnPoints.Add(t.gameObject);
         }
+        //if (_avatar.InteractionCompleted != null)
+        //{
+        //    _avatar.InteractionCompleted(_avatar); 
+        //}      //a prescindere segno che l'avatar ha completato le sue interazioni (es. per svuotare la fila)
     }
 
     public void Tick()
