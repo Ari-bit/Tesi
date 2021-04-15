@@ -683,7 +683,7 @@ MonoBehaviour:
       Delete: 0
     - DnaName: upperMuscle
       MinValue: 0
-      MaxValue: 0.9009009
+      MaxValue: 0.7516472
       Delete: 0
     - DnaName: belly
       MinValue: 0
