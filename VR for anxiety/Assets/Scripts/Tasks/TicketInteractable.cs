@@ -9,7 +9,7 @@ public class TicketInteractable : EnvInteractable
     {
         isRepeatible = true;   //dev'essere false
         interactablesBusy = new Dictionary<GameObject, bool>();
-        maxQueue = 4;  //era 4
+        maxQueue = 3;  //era 4
         busy= new bool[2];
         count = transform.childCount;
         for (int i = 0; i < count; i++)
