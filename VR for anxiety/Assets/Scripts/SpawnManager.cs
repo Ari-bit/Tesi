@@ -9,7 +9,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private AvatarManager avatarManager;
     //[SerializeField] private int MAX_AVATAR;
     [SerializeField] private SlidersUI slider;
-    [SerializeField] private UMARandomAvatar uma;
+    [SerializeField] private MyUMARandomAvatar uma;
 
     private int spawnIndex;
     private Transform spawnPos;
