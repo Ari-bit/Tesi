@@ -9,11 +9,11 @@ namespace UMA.Examples
 	/// </summary>
 	public class LocomotionSlotScript : MonoBehaviour 
 	{
-		//public void OnDnaApplied(UMAData umaData)
-		//{
-		//	var locomotion = umaData.GetComponent<Locomotion>();
-		//	if (locomotion == null)
-		//		umaData.gameObject.AddComponent<Locomotion>();
-		//}
+		public void OnDnaApplied(UMAData umaData)
+		{
+			var locomotion = umaData.GetComponent<Locomotion>();
+			if (locomotion == null)
+				umaData.gameObject.AddComponent<Locomotion>();
+		}
 	}
 }
