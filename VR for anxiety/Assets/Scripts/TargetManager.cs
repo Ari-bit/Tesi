@@ -1,22 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class TargetManager : MonoBehaviour
 {
     private int targetIndex;
-    private Transform[] targetPoints;
+    private Transform[] targetPoints;        
     private Vector3 spawnPos;
     private int count;
     private AvatarManager initAvatar;
+    public bool ready = false;
+    [SerializeField] public float radius;
+    [SerializeField] public Transform center;
+    [SerializeField] private bool manualPositioning= false;
+    [SerializeField] private int numberOfPoints;
+    [SerializeField] private GameObject targetPointPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
-        count = transform.childCount;
-        targetPoints = new Transform[count];
-        for (int i = 0; i < count; i++)
+        if (manualPositioning==false)
         {
-            targetPoints[i] = transform.GetChild(i);
+            GenerateTargetPoints();
+        }
+        else
+        {
+            GetTargetPoints();
         }
     }
 
@@ -30,5 +40,56 @@ public class TargetManager : MonoBehaviour
     {
         targetIndex = Random.Range(0, count);
         return targetPoints[targetIndex];
+    }
+
+    private void GetTargetPoints()
+    {
+        count = transform.childCount;
+        targetPoints = new Transform[count];
+        for (int i = 0; i < count; i++)
+        {
+            targetPoints[i] = transform.GetChild(i);
+        }
+
+        ready = true;
+    }
+
+    private void GenerateTargetPoints()     //nel radius ci sono ostacoli?
+    {
+        //clear manual target points if present
+        if (transform.childCount > 0)
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                Destroy(transform.GetChild(i).gameObject);
+            }
+            transform.DetachChildren();     //perchè non vengono distrutti istantaneamente 
+        }
+
+        //generate random points in a hemisphere given radius and center
+        Vector3 pointPosition;
+        for (int i = 0; i < numberOfPoints; i++)
+        {
+            pointPosition = Random.insideUnitSphere * radius ;
+            pointPosition.z = Mathf.Abs(pointPosition.z);       //semisfera
+            pointPosition += center.position;       //rispetto all'user
+            pointPosition.y = 0.1f;     //sul pavimento
+            Instantiate(targetPointPrefab, pointPosition,Quaternion.identity, this.transform);
+        }
+
+        GetTargetPoints();
+      }
+
+    //just for debug, draw the semicircle
+    //si vede solo se targetmanager è selezionato
+    [CustomEditor(typeof(TargetManager))]
+    public class DrawWireArc : Editor
+    {
+        void OnSceneGUI()
+        {
+            Handles.color = new Color(0,0,0,0.2f);
+            TargetManager myObj = (TargetManager)target;
+            Handles.DrawSolidArc(myObj.center.position, myObj.transform.up, -myObj.transform.right, 180, myObj.radius);
+        }
     }
 }

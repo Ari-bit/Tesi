@@ -7,7 +7,7 @@ public class SlidersUI : MonoBehaviour
 {
 
     private float moodValue = 0.0f;
-    private float avatarCount = 40;
+    private float avatarCount = 50;
     private float controllerRadius = 0.5f;
 
     void OnGUI()
@@ -18,7 +18,7 @@ public class SlidersUI : MonoBehaviour
         moodValue = GUI.HorizontalSlider(new Rect(25, 40, 100, 30), moodValue, -3.0f, 3.0f);
 
         GUI.Box(new Rect(10, 60, 130, 50), "Avatar Volume: "+ (int)Math.Round(avatarCount));
-        avatarCount = (GUI.HorizontalSlider(new Rect(25, 90, 100, 30), avatarCount, 0, 40));
+        avatarCount = (GUI.HorizontalSlider(new Rect(25, 90, 100, 30), avatarCount, 0, 50));
 
         GUI.Box(new Rect(10, 110, 130, 50), "Controller Radius: " + controllerRadius);
         controllerRadius = (GUI.HorizontalSlider(new Rect(25, 140, 100, 30), controllerRadius, 0.5f, 4));

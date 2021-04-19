@@ -25,9 +25,13 @@ public class ChooseTarget : IState
         //_avatar.Target = _targetManager.SetTarget();
         //Debug.Break();
         //_avatar.targetObject = _avatar.Target.gameObject;
-        _avatar.task = "Walk";
-        _avatar.targetObject = _targetManager.SetTarget().gameObject;
-        _avatar.Target = _avatar.targetObject.transform;
+        if (_targetManager.ready)
+        {
+            _avatar.task = "Walk";
+            _avatar.targetObject = _targetManager.SetTarget().gameObject;
+            _avatar.Target = _avatar.targetObject.transform;
+        }
+        
     }
 
 }
