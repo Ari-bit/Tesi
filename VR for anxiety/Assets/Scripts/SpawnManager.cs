@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UMA;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -20,6 +22,7 @@ public class SpawnManager : MonoBehaviour
 
     private int MAX_AVATAR;
 
+    public Action<int> sogliaRaggiunta;
     //private Vector3 rayOrigin;
     //private Vector3 dirToSpawn;
     //private float dstToSpawn;
@@ -50,6 +53,9 @@ public class SpawnManager : MonoBehaviour
         else if (avatarCount == MAX_AVATAR)
         {
             CancelInvoke();
+            if(sogliaRaggiunta!=null)
+                sogliaRaggiunta(MAX_AVATAR);        //in verità l'evento dev'essere quando entrano tutti nella sfera
+            //evento
         }
         else if (avatarCount > MAX_AVATAR)
         {

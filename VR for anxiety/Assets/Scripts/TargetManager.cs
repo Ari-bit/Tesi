@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class TargetManager : MonoBehaviour
 {
@@ -54,7 +55,7 @@ public class TargetManager : MonoBehaviour
         ready = true;
     }
 
-    private void GenerateTargetPoints()     //nel radius ci sono ostacoli?
+    private void GenerateTargetPoints()    
     {
         //clear manual target points if present
         if (transform.childCount > 0)
@@ -74,6 +75,12 @@ public class TargetManager : MonoBehaviour
             pointPosition.z = Mathf.Abs(pointPosition.z);       //semisfera
             pointPosition += center.position;       //rispetto all'user
             pointPosition.y = 0.1f;     //sul pavimento
+            
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(pointPosition, out hit, 1.0f, NavMesh.AllAreas)) //trova il punto sulla navmesh, per gestire gli ostacoli
+            {
+                pointPosition = hit.position;
+            }
             Instantiate(targetPointPrefab, pointPosition,Quaternion.identity, this.transform);
         }
 

@@ -30,8 +30,17 @@ public class Die : IState
         }
         //if (_avatar.InteractionCompleted != null)
         //{
-        //    _avatar.InteractionCompleted(_avatar); 
+        //    Debug.Log(_avatar.name);
+        //    _avatar.InteractionCompleted(_avatar);  //non devo fare dequeue, devo ricalcolare la queue
         //}      //a prescindere segno che l'avatar ha completato le sue interazioni (es. per svuotare la fila)
+
+        if (_avatar.InteractionCompleted != null)       //se l'avatar è iscritto all'evento, ovvero è in fila
+        {
+            //Debug.Log(_avatar.name+ " era in fila e deve morire");
+            _avatar.InteractionCompleted(_avatar);  //non devo fare dequeue, devo ricalcolare la queue
+
+            //evento update list(avatar)
+        }
     }
 
     public void Tick()
@@ -50,10 +59,10 @@ public class Die : IState
         _navMeshAgent.SetDestination(_target.position);
         _avatar.isToRemove = false;
 
-        if (_avatar.InteractionCompleted != null)
-        {
-            _avatar.InteractionCompleted(_avatar);      //per svuotare la queue
-        }
+        //if (_avatar.InteractionCompleted != null)
+        //{
+        //    _avatar.InteractionCompleted(_avatar);      //per svuotare la queue
+        //}
     }
 
     public void OnExit()

@@ -52,5 +52,8 @@ public class SlidersUI : MonoBehaviour
         visualTime += Time.deltaTime; ;
     }
 
-
+    public void SetVisualTime(float time)
+    {
+        visualTime = time;
+    }
 }

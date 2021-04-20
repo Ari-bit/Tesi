@@ -10,21 +10,40 @@ public class FlowManager : MonoBehaviour
     [SerializeField] private int many = 50;
     [SerializeField] private int few = 10;
     [SerializeField] private SlidersUI slider;
+    [SerializeField] private SpawnManager spawnM;
+    private bool minutaggio = false;
+
+    void Start()
+    {
+        spawnM.sogliaRaggiunta += OnSogliaRaggiunta;
+    }
 
     void Update()
     {
         timer += Time.deltaTime;
 
-       if (timer > waitTime)
+       if (timer > waitTime && minutaggio)
         {
             //evento
+            spawnM.sogliaRaggiunta += OnSogliaRaggiunta;        //mi riiscrivo all'evento
+
             timer = timer - waitTime;   //azzero
-            if(slider.GetAvatarCount()==few)
+            slider.SetVisualTime(timer);
+            if (slider.GetAvatarCount()==few)
                 slider.SetAvatarCount(many);
             else 
                 slider.SetAvatarCount(few);
+            minutaggio = false;
         }
     }
-    
+
+    private void OnSogliaRaggiunta(int soglia)
+    {
+        spawnM.sogliaRaggiunta -= OnSogliaRaggiunta;
+        Debug.Log("soglia raggiunta " +soglia);
+        timer = 0;   //azzero, da qui deve partire 1 min
+        slider.SetVisualTime(timer);
+        minutaggio = true;
+    }
 }
 

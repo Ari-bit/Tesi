@@ -12,6 +12,7 @@ public class QueueManager : MonoBehaviour
     private int _maxQueue;
     public int queued = 0;      //DEBUG
     public Avatar[] avatarArray;        //DEBUG
+    public Avatar[] array;        //DEBUG
 
     void Start()
     {
@@ -39,7 +40,7 @@ public class QueueManager : MonoBehaviour
         //queued = _avatarQueue.Count;
         //vedere se un avatar sta arrivando (controllare avatar.targetObj?)
         //assegbarlo ad un punto della fila (cambiargli il target, inserirlo in queue)
-        avatarArray= _avatarQueue.ToArray();
+        avatarArray= _avatarQueue.ToArray();        //solo per debug, da eliminare
     }
 
     private void OnTriggerEnter(Collider other)
@@ -105,9 +106,14 @@ public class QueueManager : MonoBehaviour
 
     private void OnAvatarInteractionCompleted(Avatar avatar) 
     {
+        
         avatar.InteractionCompleted -= OnAvatarInteractionCompleted;      //il manager smette di "ascoltare" l'avatar che ha scatenato l'evento
         avatar.isQueuing = false;
-        if (_avatarQueue.Contains(avatar))
+        if (avatar.isToRemove)
+        {
+            ResetQueue(avatar);
+        }
+        else if (_avatarQueue.Contains(avatar))
         {
             _avatarQueue.Dequeue();
             queued = _avatarQueue.Count;
@@ -119,18 +125,26 @@ public class QueueManager : MonoBehaviour
         }
     }
 
-    //die case
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    Avatar avatar;
-    //    if (other.GetComponentInParent<Avatar>() != null)
-    //    {
-    //        avatar = other.GetComponentInParent<Avatar>();
-    //        if (_avatarQueue.Contains(avatar)&&avatar._currentState=="Die")     //non un gran che
-    //        {
-    //            _avatarQueue.Dequeue();
-    //            queued = _avatarQueue.Count;
-    //        }
-    //    }
-    //}
+    private void ResetQueue(Avatar avatar)
+    {
+        array= _avatarQueue.ToArray();
+        //dall'array rimuovo avatar
+        //poi faccio clear e enqueue
+        _avatarQueue.Clear();
+        
+        foreach (Avatar a in array)
+        {
+            if (a != avatar)
+            {
+                _avatarQueue.Enqueue(a);
+            }
+        }
+
+        for (int i = 0; i < _avatarQueue.Count; i++)
+        {
+            _avatarQueue.ToArray()[i].Target = _queuePoints[i];
+        }
+        queued = _avatarQueue.Count;
+        Debug.Log(avatar);
+    }
 }
