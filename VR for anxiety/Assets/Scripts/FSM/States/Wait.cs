@@ -44,6 +44,7 @@ public class Wait : IState
         //_navMeshAgent.isStopped = false;
         //_navMeshAgent.speed = _animator.GetFloat("Forward");
 
+        //aspettare un istante prima di passare allo stato successivo?
     }
 
     public void Tick()

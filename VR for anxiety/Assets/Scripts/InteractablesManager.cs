@@ -1,6 +1,9 @@
-﻿using System.Collections;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class InteractablesManager : MonoBehaviour
 {
@@ -38,7 +41,10 @@ public class InteractablesManager : MonoBehaviour
         //{
         //    GetNextTask(avatar);
         //}
-        List<string> copia = tasks;
+
+        //tutto questo giro per non modificare tasks
+        String[] copiaArray = tasks.ToArray();
+        List<string> copia = copiaArray.ToList();
         //non posso scegliare i task non ripetibili già eseguiti 1 volta
         for(int i = 0; i < avatar.NRFinishedTasks.Count; i++)
         {

@@ -6761,6 +6761,7 @@ GameObject:
   - component: {fileID: 1268171255}
   - component: {fileID: 1268171254}
   - component: {fileID: 1268171257}
+  - component: {fileID: 1268171258}
   m_Layer: 0
   m_Name: Ticket (1)
   m_TagString: Untagged
@@ -6863,6 +6864,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 12.175635, y: 1, z: 6.3816123}
   m_Center: {x: 5.56263, y: 0, z: -0.0040564877}
+--- !u!208 &1268171258
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268171252}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &1282842565
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9216,6 +9233,7 @@ GameObject:
   - component: {fileID: 1443543396}
   - component: {fileID: 1443543395}
   - component: {fileID: 1443543398}
+  - component: {fileID: 1443543399}
   m_Layer: 0
   m_Name: Ticket
   m_TagString: Untagged
@@ -9318,6 +9336,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10.900258, y: 1, z: 6.397785}
   m_Center: {x: 5.13429, y: 0, z: -0.053623635}
+--- !u!208 &1443543399
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443543393}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!4 &1460885869 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 830359537497455487, guid: 7639933c64e56414494b06550fb56a9f,

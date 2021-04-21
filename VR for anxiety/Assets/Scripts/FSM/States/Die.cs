@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEditor;
 
 public class Die : IState
 {
@@ -33,9 +34,11 @@ public class Die : IState
         //    Debug.Log(_avatar.name);
         //    _avatar.InteractionCompleted(_avatar);  //non devo fare dequeue, devo ricalcolare la queue
         //}      //a prescindere segno che l'avatar ha completato le sue interazioni (es. per svuotare la fila)
-
+        
         if (_avatar.InteractionCompleted != null)       //se l'avatar è iscritto all'evento, ovvero è in fila
         {
+            //Selection.activeGameObject = _avatar.gameObject;
+            //Debug.Break();
             //Debug.Log(_avatar.name+ " era in fila e deve morire");
             _avatar.InteractionCompleted(_avatar);  //non devo fare dequeue, devo ricalcolare la queue
 
@@ -49,6 +52,7 @@ public class Die : IState
             .OrderBy(s => Vector3.Distance(_avatar.transform.position, s.transform.position))
             .FirstOrDefault().transform;
         _avatar.Target = _target;
+        _avatar.targetObject = _target.gameObject;
 
         //prende i valori iniziali
         _animator.SetFloat("Forward", _avatar.speed);
