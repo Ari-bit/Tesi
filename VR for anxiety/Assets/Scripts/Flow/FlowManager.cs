@@ -31,6 +31,7 @@ public class FlowManager : MonoBehaviour
             slider.SetVisualTime(timer);
             if (slider.GetAvatarCount()==few)
                 slider.SetAvatarCount(many);
+                //arrivo del treno
             else 
                 slider.SetAvatarCount(few);
             minutaggio = false;

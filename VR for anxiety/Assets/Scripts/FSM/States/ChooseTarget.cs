@@ -28,7 +28,9 @@ public class ChooseTarget : IState
         if (_targetManager.ready)
         {
             _avatar.task = "Walk";
-            _avatar.targetObject = _targetManager.SetTarget().gameObject;
+            //_avatar.targetObject = _targetManager.SetTarget().gameObject;
+            _avatar.targetObject = _targetManager.GenerateIdlePoint();
+
             _avatar.Target = _avatar.targetObject.transform;
         }
         

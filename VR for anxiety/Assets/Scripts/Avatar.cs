@@ -68,6 +68,7 @@ public class Avatar : MonoBehaviour
         var die = new Die(this, navMeshAgent, animator, spawnPos);
         var moveForward= new MoveForward(this);
         var wait= new Wait(animator, navMeshAgent);
+        var idle = new Idle(animator, navMeshAgent);
 
         At(selectTarget, moveToSelected, HasTarget());
         At(selectTarget, findInteractable, () => task != "Walk");
@@ -91,6 +92,10 @@ public class Avatar : MonoBehaviour
         //se maxqueue, cambio interactable
         At(moveToSelected, findInteractable, () => maxQueue);
         At(findInteractable, selectTarget, () => maxQueueCount > 1);    //se maxqueue e non ci sono fratelli interactable, cambio task
+
+        //At(moveToSelected, idle, Idle());
+        At(interact, idle, Idle());
+
 
         _stateMachine.AddAnyTransition(die, () => isToRemove 
                                                   //&& (fineInteract|| prevTask == "Walk")
@@ -118,10 +123,14 @@ public class Avatar : MonoBehaviour
         Func<bool> SpawnReached() => () => !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
         Func<bool> NextTask() => () => 
             //hasInteracted && 
-            task != prevTask && (fineInteract==true||prevTask=="Walk");
+            task != prevTask && (fineInteract==true
+                                 //||prevTask=="Walk"
+                                 );
         Func<bool> Walk() => () => 
             //hasInteracted && 
-            (task == prevTask || task=="Walk") && (fineInteract==true || prevTask == "Walk");
+            (task == prevTask || task=="Walk") && (fineInteract==true 
+                                                   //|| prevTask == "Walk"
+                                                   );
 
         Func<bool> InteractableIsFree() => () =>
             !navMeshAgent.pathPending &&
@@ -143,6 +152,10 @@ public class Avatar : MonoBehaviour
             //&& Target.name == "posto"
             && (targetObject.GetComponentInParent<EnvInteractable>().interactablesBusy[targetObject] == true
             || isQueuing==true)
+        ;
+
+        Func<bool> Idle() => () =>
+            prevTask=="Walk"
         ;
     }
 
