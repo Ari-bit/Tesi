@@ -24,12 +24,12 @@ public class FlowManager : MonoBehaviour
 
        if (timer > waitTime && minutaggio)
         {
-            //evento
             spawnM.sogliaRaggiunta += OnSogliaRaggiunta;        //mi riiscrivo all'evento
 
             timer = timer - waitTime;   //azzero
             slider.SetVisualTime(timer);
-            if (slider.GetAvatarCount()==few)
+            //if (slider.GetAvatarCount()==few)       //da non prendere dallo slider
+            if (spawnM.MAX_AVATAR == few)      
                 slider.SetAvatarCount(many);
                 //arrivo del treno
             else 

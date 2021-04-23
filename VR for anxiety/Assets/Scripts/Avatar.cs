@@ -54,6 +54,7 @@ public class Avatar : MonoBehaviour
         //targetManager = targetManagerObj.GetComponent<TargetManager>();
 
         var navMeshAgent = GetComponent<NavMeshAgent>();
+        var navMeshObsacle = GetComponent<NavMeshObstacle>();
         var animator = GetComponent<Animator>();
         var scheduler = GameObject.Find("Interactables").GetComponent<InteractablesManager>();
 
@@ -68,7 +69,7 @@ public class Avatar : MonoBehaviour
         var die = new Die(this, navMeshAgent, animator, spawnPos);
         var moveForward= new MoveForward(this);
         var wait= new Wait(animator, navMeshAgent);
-        var idle = new Idle(animator, navMeshAgent);
+        var idle = new Idle(animator, navMeshAgent, navMeshObsacle);
 
         At(selectTarget, moveToSelected, HasTarget());
         At(selectTarget, findInteractable, () => task != "Walk");

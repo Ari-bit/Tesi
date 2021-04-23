@@ -68,20 +68,25 @@ public class TargetManager : MonoBehaviour
         }
 
         //generate random points in a hemisphere given radius and center
-        Vector3 pointPosition;
+        //Vector3 pointPosition;
+        //for (int i = 0; i < numberOfPoints; i++)
+        //{
+        //    pointPosition = Random.insideUnitSphere * radius ;
+        //    pointPosition.z = Mathf.Abs(pointPosition.z);       //semisfera
+        //    pointPosition += center.position;       //rispetto all'user
+        //    pointPosition.y = center.position.y;     //sul pavimento     
+
+        //    NavMeshHit hit;
+        //    if (NavMesh.SamplePosition(pointPosition, out hit, 2.0f, 1)) //trova il punto sulla navmesh, per gestire gli ostacoli
+        //    {
+        //        //areamask=1 -> walkable
+        //        pointPosition = hit.position;
+        //    }
+        //    Instantiate(targetPointPrefab, pointPosition,Quaternion.identity, this.transform);
+        //}
         for (int i = 0; i < numberOfPoints; i++)
         {
-            pointPosition = Random.insideUnitSphere * radius ;
-            pointPosition.z = Mathf.Abs(pointPosition.z);       //semisfera
-            pointPosition += center.position;       //rispetto all'user
-            pointPosition.y = 0.1f;     //sul pavimento
-            
-            NavMeshHit hit;
-            if (NavMesh.SamplePosition(pointPosition, out hit, 1.0f, NavMesh.AllAreas)) //trova il punto sulla navmesh, per gestire gli ostacoli
-            {
-                pointPosition = hit.position;
-            }
-            Instantiate(targetPointPrefab, pointPosition,Quaternion.identity, this.transform);
+            GenerateIdlePoint();
         }
 
         GetTargetPoints();
@@ -108,15 +113,14 @@ public class TargetManager : MonoBehaviour
         pointPosition = Random.insideUnitSphere * radius ;
         pointPosition.z = Mathf.Abs(pointPosition.z);       //semisfera
         pointPosition += center.position;       //rispetto all'user
-        pointPosition.y = 0.1f;     //sul pavimento
-        
+        pointPosition.y = center.position.y;     //sul pavimento     
+
         NavMeshHit hit;
-        if (NavMesh.SamplePosition(pointPosition, out hit, 1.0f, NavMesh.AllAreas)) //trova il punto sulla navmesh, per gestire gli ostacoli
+        if (NavMesh.SamplePosition(pointPosition, out hit, 2.0f, 1)) //trova il punto sulla navmesh, per gestire gli ostacoli
         {
             pointPosition = hit.position;
         }
         GameObject g= Instantiate(targetPointPrefab, pointPosition,Quaternion.identity, this.transform);
         return g;
-
     }
 }

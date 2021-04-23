@@ -20,7 +20,7 @@ public class SpawnManager : MonoBehaviour
     private Camera cam;
     private int avatarCount =0;
 
-    private int MAX_AVATAR;
+    public int MAX_AVATAR;
 
     public Action<int> sogliaRaggiunta;
     //private Vector3 rayOrigin;
