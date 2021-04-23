@@ -76,6 +76,7 @@ public class ReachTarget : IState
         /*_navMeshAgent.SetDestination(_target.position);*/
 
         //_animator.SetFloat(Speed, 0.4f);
+        _avatar.idleTimeout = false;
     }
 
     public void OnExit()

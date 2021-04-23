@@ -44,6 +44,8 @@ public class Avatar : MonoBehaviour
 
     public string _currentState;    //DEBUG
 
+    public bool idleTimeout = false;
+    public float idleTime = 30f;
 
     //CARATTERISTICHE
     public float speed;
@@ -69,7 +71,7 @@ public class Avatar : MonoBehaviour
         var die = new Die(this, navMeshAgent, animator, spawnPos);
         var moveForward= new MoveForward(this);
         var wait= new Wait(animator, navMeshAgent);
-        var idle = new Idle(animator, navMeshAgent, navMeshObsacle);
+        var idle = new Idle(animator, navMeshAgent, navMeshObsacle, this);
 
         At(selectTarget, moveToSelected, HasTarget());
         At(selectTarget, findInteractable, () => task != "Walk");
@@ -96,7 +98,8 @@ public class Avatar : MonoBehaviour
 
         //At(moveToSelected, idle, Idle());
         At(interact, idle, Idle());
-
+        At(idle, findInteractable, IdleNextTask());
+        At(idle, selectTarget, IdleWalk());
 
         _stateMachine.AddAnyTransition(die, () => isToRemove 
                                                   //&& (fineInteract|| prevTask == "Walk")
@@ -125,12 +128,20 @@ public class Avatar : MonoBehaviour
         Func<bool> NextTask() => () => 
             //hasInteracted && 
             task != prevTask && (fineInteract==true
-                                 //||prevTask=="Walk"
+                                 //||(prevTask=="Walk"&& idleTimeout==true)
                                  );
+        Func<bool> IdleNextTask() => () =>
+            idleTimeout && 
+            task != prevTask && prevTask=="Walk"
+            ;
+        Func<bool> IdleWalk() => () =>
+            idleTimeout &&
+            (task == prevTask || task == "Walk")
+        ;
         Func<bool> Walk() => () => 
             //hasInteracted && 
             (task == prevTask || task=="Walk") && (fineInteract==true 
-                                                   //|| prevTask == "Walk"
+                                                   //|| (prevTask == "Walk" && idleTimeout == true)
                                                    );
 
         Func<bool> InteractableIsFree() => () =>

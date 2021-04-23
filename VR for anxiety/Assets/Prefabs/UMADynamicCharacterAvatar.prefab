@@ -5581,6 +5581,8 @@ MonoBehaviour:
   trigger: 0
   findAnotherPoint: 0
   _currentState: 
+  idleTimeout: 0
+  idleTime: 30
   speed: 0
 --- !u!195 &8871849198102921325
 NavMeshAgent:
@@ -5849,5 +5851,5 @@ NavMeshObstacle:
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
   m_TimeToStationary: 0.5
