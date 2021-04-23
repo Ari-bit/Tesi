@@ -6730,6 +6730,7 @@ MonoBehaviour:
   avatarManager: {fileID: 1648388326}
   slider: {fileID: 153122407}
   uma: {fileID: 1461959823}
+  MAX_AVATAR: 0
 --- !u!4 &1268155790
 Transform:
   m_ObjectHideFlags: 0
